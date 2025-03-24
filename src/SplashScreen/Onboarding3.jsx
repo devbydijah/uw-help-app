@@ -14,6 +14,10 @@ const Onboarding3 = () => {
     navigate("/home");
   };
 
+  const handleNextClick = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="bg-white min-h-screen relative">
       <header className="absolute top-4 left-4">
@@ -129,7 +133,7 @@ const Onboarding3 = () => {
         </section>
         <button
           className="bg-green-800 text-white w-[350px] h-[40px] gap-2 rounded-full mx-auto cursor-pointer"
-          onClick={() => navigate("/home")}
+          onClick={handleNextClick}
         >
           Next
         </button>
