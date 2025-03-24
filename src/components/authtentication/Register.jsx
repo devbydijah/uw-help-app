@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"; 
 import googleLogo from "../../assets/images/google.png";
 import facebookLogo from "../../assets/images/facebook.png";
 
@@ -12,6 +13,7 @@ const Register = () => {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate(); 
 
   const onSubmit = (data) => {
     console.log(data);
@@ -21,9 +23,16 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleBackClick = () => {
+    navigate('/onboarding3'); 
+  };
+
   return (
     <div className="relative flex flex-col items-center">
-      <FaArrowLeft className="absolute w-4 h-4 top-[4px] left-[4px] text-zinc-900 cursor-pointer" />
+      <FaArrowLeft
+        className="absolute w-4 h-4 top-[4px] left-[4px] text-zinc-900 cursor-pointer"
+        onClick={handleBackClick} 
+      />
       <div className="mt-16 text-center w-[335.198px] h-[88px] top-[124.88px] left-[41.8px] gap-[11px] flex flex-col items-center">
         <div className="w-[335.2px] h-[29px] leading-[120%] tracking-[-2%]">
           <h1 className="text-2xl font-semibold">Let’s Get Started!</h1>

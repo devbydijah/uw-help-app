@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import uwLogo from "../assets/images/uw-logo.png";
+import uwLogo from "../../assets/images/uw-logo.png";
 
 const Onboarding1 = () => {
   const navigate = useNavigate();

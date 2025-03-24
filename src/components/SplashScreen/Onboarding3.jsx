@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import recyclingImage2 from "../assets/images/recycling2.png";
+import recyclingImage2 from "../../assets/images/recycling2.png";
 
 const Onboarding3 = () => {
   const navigate = useNavigate();
