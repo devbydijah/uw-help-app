@@ -13,7 +13,7 @@ function App() {
         <Route path="/onboarding2" element={<Onboarding2 />} />
         <Route path="/onboarding3" element={<Onboarding3 />} />
         <Route path="/register" element={<Register />} />{" "}
-        {/* Add the Register route */}
+
       </Routes>
     </Router>
   );
