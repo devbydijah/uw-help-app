@@ -12,20 +12,11 @@ function App() {
         <Route path="/" element={<Onboarding1 />} />
         <Route path="/onboarding2" element={<Onboarding2 />} />
         <Route path="/onboarding3" element={<Onboarding3 />} />
+        <Route path="/register" element={<Register />} />{" "}
+
       </Routes>
     </Router>
   );
-=========
-import React from 'react'
-import Register from './components/authtentication/Register'
-
-const App = () => {
-  return (
-    <div>
-      <Register />
-    </div>
-  )
->>>>>>>>> Temporary merge branch 2
 }
 
 export default App;
