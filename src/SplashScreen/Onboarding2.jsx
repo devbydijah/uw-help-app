@@ -19,7 +19,7 @@ const Onboarding2 = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen relative">
+    <div className="bg-white min-h-screen flex flex-col items-center justify-center relative">
       <header className="absolute top-4 left-4">
         <FaArrowLeft
           className="text-zinc-900 w-4 h-4 cursor-pointer"
@@ -32,7 +32,7 @@ const Onboarding2 = () => {
       >
         Skip
       </nav>
-      <main className="flex flex-col items-center justify-center min-h-screen space-y-4">
+      <main className="flex flex-col items-center justify-center space-y-1 text-center">
         <section>
           <img
             src={recyclingImage}
@@ -40,18 +40,18 @@ const Onboarding2 = () => {
             className="w-[427px] h-[449px]"
           />
         </section>
-        <section>
-          <h1 className="text-black font-bold text-center w-[243px] h-[29px] leading-[120%] tracking-[-2%]">
+        <section className="flex flex-col items-center">
+          <h1 className="text-black font-bold text-center leading-[120%] tracking-[-2%] text-2xl mb-4">
             Welcome to UW Help!
           </h1>
-          <p className="text-black text-center w-[376.154px] h-[66px] leading-[140%]">
+          <p className="text-black text-center leading-[140%] text-lg mb-4">
             Dispose of waste responsibly and connect with trusted garbage
             carriers and plumbers in your area.
           </p>
         </section>
         <section>
           <button
-            className="bg-green-800 text-white w-[350px] h-[40px] gap-2 rounded-full mx-auto cursor-pointer"
+            className="bg-green-800 text-white w-[350px] h-[40px] gap-2 rounded-full mx-auto cursor-pointer mb-10"
             onClick={handleGetStartedClick}
           >
             Next
