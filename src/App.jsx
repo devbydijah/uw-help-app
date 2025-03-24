@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onboarding1 from "./SplashScreen/Onboarding1";
-import Onboarding2 from "./SplashScreen/Onboarding2"; 
+import Onboarding2 from "./SplashScreen/Onboarding2";
 import Onboarding3 from "./SplashScreen/Onboarding3";
+import Register from "./auth/Register"; 
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Onboarding1 />} />
         <Route path="/onboarding2" element={<Onboarding2 />} />
         <Route path="/onboarding3" element={<Onboarding3 />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
