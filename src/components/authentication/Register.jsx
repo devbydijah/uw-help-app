@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+// TODO: Remember to set up HTTPS for your domain before deploying to production
+import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"; 
-import googleLogo from "../../assets/images/google.png";
-import facebookLogo from "../../assets/images/facebook.png";
+import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAc75lzWPr4e0AY43V_k0Dy_Ofz4A4FOFY",
+  authDomain: "urban-waste-help-6cb52.firebaseapp.com",
+  projectId: "urban-waste-help-6cb52",
+  storageBucket: "urban-waste-help-6cb52.firebasestorage.app",
+  messagingSenderId: "489957749468",
+  appId: "1:489957749468:web:9b150e6e013c5597157a19",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const Register = () => {
   const {
@@ -13,10 +34,46 @@ const Register = () => {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  useEffect(() => {
+    // Load the Facebook SDK
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: "1825382201594217", // Replace with your Facebook App ID
+        cookie: true,
+        xfbml: true,
+        version: "v12.0",
+      });
+    };
+
+    // Load the Facebook SDK script
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  }, []);
+
+  const onSubmit = async (data) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("User registered:", userCredential.user);
+      // Navigate to another page or show a success message
+    } catch (error) {
+      console.error("Error registering user:", error);
+      // Handle registration errors
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -24,14 +81,27 @@ const Register = () => {
   };
 
   const handleBackClick = () => {
-    navigate('/onboarding3'); 
+    navigate("/onboarding3");
+  };
+
+  const handleFacebookLogin = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("Facebook sign-in successful:", result.user);
+        navigate("/signupas"); // Redirect to SignUpAs page
+      })
+      .catch((error) => {
+        console.error("Error with Facebook sign-in:", error);
+        // Handle sign-in errors
+      });
   };
 
   return (
     <div className="relative flex flex-col items-center">
       <FaArrowLeft
         className="absolute w-4 h-4 top-[4px] left-[4px] text-zinc-900 cursor-pointer"
-        onClick={handleBackClick} 
+        onClick={handleBackClick}
       />
       <div className="mt-16 text-center w-[335.198px] h-[88px] top-[124.88px] left-[41.8px] gap-[11px] flex flex-col items-center">
         <div className="w-[335.2px] h-[29px] leading-[120%] tracking-[-2%]">
@@ -130,18 +200,25 @@ const Register = () => {
         <hr className="w-1/4 border-t border-neutral-500" />
       </div>
       <div className="mt-4 w-full flex flex-col items-center gap-4">
-        <button className="flex items-center border border-neutral-500 rounded px-4 py-2 w-[335.198px] cursor-pointer">
-          <img src={googleLogo} alt="Google Logo" className="w-6 h-6 mr-2" />
-          <span className="text-neutral-500">Sign Up with Google</span>
-        </button>
-        <button className="flex items-center border border-blue-500 bg-blue-500 rounded px-4 py-2 w-[335.198px] cursor-pointer">
-          <img
-            src={facebookLogo}
-            alt="Facebook Logo"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="text-white">Sign Up with Facebook</span>
-        </button>
+        <GoogleLogin
+          onSuccess={(response) => {
+            console.log("Google sign-up successful", response);
+            navigate("/signupas"); // Redirect to SignUpAs page
+          }}
+          onError={() => {
+            console.log("Google sign-up failed");
+          }}
+        />
+        <div
+          className="fb-login-button"
+          data-width=""
+          data-size="large"
+          data-button-type="login_with"
+          data-layout="default"
+          data-auto-logout-link="false"
+          data-use-continue-as="false"
+          onClick={handleFacebookLogin}
+        ></div>
       </div>
     </div>
   );
