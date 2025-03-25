@@ -97,6 +97,10 @@ const Register = () => {
       });
   };
 
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="relative flex flex-col items-center">
       <FaArrowLeft
@@ -189,9 +193,12 @@ const Register = () => {
       <div className="mt-4 text-center">
         <p className="text-sm">
           Already have an account?{" "}
-          <a href="#" className="text-green-800">
+          <span
+            className="text-green-800 cursor-pointer"
+            onClick={handleLoginClick}
+          >
             Login
-          </a>
+          </span>
         </p>
       </div>
       <div className="flex items-center mt-4 w-full justify-center">

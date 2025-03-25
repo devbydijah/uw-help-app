@@ -5,6 +5,7 @@ import Onboarding2 from "./components/SplashScreen/Onboarding2";
 import Onboarding3 from "./components/SplashScreen/Onboarding3";
 import Register from "./components/authentication/Register";
 import SignUpAs from "./components/authentication/SignUpAs"; 
+import Login from "./components/authentication/Login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/onboarding3" element={<Onboarding3 />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signupas" element={<SignUpAs />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
