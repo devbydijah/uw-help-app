@@ -1,3 +1,4 @@
+// TODO: Remember to set up HTTPS for your domain before deploying to production
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
@@ -68,8 +69,7 @@ const Register = () => {
         data.password
       );
       console.log("User registered:", userCredential.user);
-      localStorage.setItem("isRegistered", "true");
-      navigate("/auth");
+      // Navigate to another page or show a success message
     } catch (error) {
       console.error("Error registering user:", error);
       // Handle registration errors
@@ -95,10 +95,6 @@ const Register = () => {
         console.error("Error with Facebook sign-in:", error);
         // Handle sign-in errors
       });
-  };
-
-  const handleLoginClick = () => {
-    navigate("/login");
   };
 
   return (
@@ -193,12 +189,9 @@ const Register = () => {
       <div className="mt-4 text-center">
         <p className="text-sm">
           Already have an account?{" "}
-          <span
-            className="text-green-800 cursor-pointer"
-            onClick={handleLoginClick}
-          >
+          <a href="#" className="text-green-800">
             Login
-          </span>
+          </a>
         </p>
       </div>
       <div className="flex items-center mt-4 w-full justify-center">
