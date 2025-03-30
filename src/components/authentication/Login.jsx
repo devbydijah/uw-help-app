@@ -9,7 +9,6 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 
 const Login = () => {
   const {
@@ -67,24 +66,12 @@ const Login = () => {
     setLoading(true); // Start loading
     setLoginError(""); // Clear previous errors
     try {
-      const response = await axios.post("https://your-backend-api.com/login", {
-        username: data.username,
-        password: data.password,
-      });
-
-      // Handle successful login
-      const { token } = response.data;
-      localStorage.setItem("authToken", token); // Store token in localStorage
-      console.log("Login successful:", response.data);
-      navigate("/dashboard"); // Redirect to dashboard
+      // TEMPORARY: Backend API call logic removed
+      console.log("Login form submitted:", data);
+      navigate("/homepage"); // Redirect to homepage
     } catch (error) {
-      // Handle login errors
-      if (error.response && error.response.data) {
-        setLoginError(error.response.data.message || "Login failed.");
-      } else {
-        setLoginError("An unexpected error occurred. Please try again.");
-      }
       console.error("Login error:", error);
+      setLoginError("Login failed. Please try again.");
     } finally {
       setLoading(false); // Stop loading
     }
@@ -94,16 +81,12 @@ const Login = () => {
     setLoading(true); // Start loading
     setResetMessage(""); // Clear previous messages
     try {
-      const response = await axios.post(
-        "https://your-backend-api.com/forgot-password",
-        { email: resetEmail }
-      );
-      setResetMessage(response.data.message || "Password reset email sent.");
+      // TEMPORARY: Backend API call logic removed
+      console.log("Forgot password request sent for:", resetEmail);
+      setResetMessage("Password reset email sent.");
     } catch (error) {
-      setResetMessage(
-        error.response?.data?.message || "Error sending password reset email."
-      );
       console.error("Forgot password error:", error);
+      setResetMessage("Error sending password reset email.");
     } finally {
       setLoading(false); // Stop loading
     }
@@ -113,16 +96,9 @@ const Login = () => {
     setLoading(true); // Start loading
     setLoginError(""); // Clear previous errors
     try {
-      const response = await axios.post(
-        "https://your-backend-api.com/social-login/google",
-        { token: credentialResponse.credential }
-      );
-
-      // Handle successful login
-      const { token } = response.data;
-      localStorage.setItem("authToken", token);
-      console.log("Google login successful:", response.data);
-      navigate("/dashboard");
+      // TEMPORARY: Backend API call logic removed
+      console.log("Google login successful:", credentialResponse);
+      navigate("/homepage"); // Redirect to homepage
     } catch (error) {
       console.error("Google login error:", error);
       setLoginError("Google login failed. Please try again.");
@@ -134,36 +110,16 @@ const Login = () => {
   const handleFacebookLogin = () => {
     setLoading(true); // Start loading
     setLoginError(""); // Clear previous errors
-    FB.login(
-      async (response) => {
-        if (response.authResponse) {
-          try {
-            const { accessToken } = response.authResponse;
-            const backendResponse = await axios.post(
-              "https://your-backend-api.com/social-login/facebook",
-              { token: accessToken }
-            );
-
-            // Handle successful login
-            const { token } = backendResponse.data;
-            localStorage.setItem("authToken", token);
-            console.log("Facebook login successful:", backendResponse.data);
-            navigate("/dashboard");
-          } catch (error) {
-            console.error("Facebook login error:", error);
-            setLoginError("Facebook login failed. Please try again.");
-          }
-        } else {
-          console.error(
-            "User cancelled Facebook login or did not fully authorize."
-          );
-          setLoginError("Facebook login cancelled.");
-        }
-      },
-      { scope: "email,public_profile" }
-    ).finally(() => {
+    try {
+      // TEMPORARY: Backend API call logic removed
+      console.log("Facebook login initiated.");
+      navigate("/homepage"); // Redirect to homepage
+    } catch (error) {
+      console.error("Facebook login error:", error);
+      setLoginError("Facebook login failed. Please try again.");
+    } finally {
       setLoading(false); // Stop loading
-    });
+    }
   };
 
   return (
@@ -313,8 +269,6 @@ const Login = () => {
         <hr className="w-1/4 border-t border-neutral-500" />
       </div>
       <div className="mt-4 w-full flex flex-col items-center gap-1">
-        {" "}
-        {/* Reduced gap from gap-2 to gap-1 */}
         <GoogleLogin
           onSuccess={handleGoogleLoginSuccess}
           onError={() => {
@@ -323,7 +277,7 @@ const Login = () => {
           }}
         />
         <button
-          className="bg-blue-600 text-white p-2 rounded-md mt-2 cursor-pointer flex items-center justify-center gap-2" // Reduced mt from mt-4 to mt-2
+          className="bg-blue-600 text-white p-2 rounded-md mt-2 cursor-pointer flex items-center justify-center gap-2"
           onClick={handleFacebookLogin}
           disabled={loading}
         >
