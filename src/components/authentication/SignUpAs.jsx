@@ -1,4 +1,3 @@
-// TODO: Remember to set up the submit button logic when a user selects a role and clicks submit
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -8,33 +7,56 @@ import WasteDepositor from "../../assets/images/waste-depositor.png";
 const SignUpAs = () => {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
+  const [errorMessage, setErrorMessage] = useState(""); // Error state
 
   const handleBackClick = () => {
     navigate("/register");
   };
 
-  const handleSubmit = () => {
-    console.log("Submit clicked, selectedRole:", selectedRole);
-    if (selectedRole === "collector") {
-      navigate("/homepage"); // Navigate to the homepage for Waste Collectors
-    } else if (selectedRole === "depositor") {
-      navigate("/default"); // Navigate to the Default page for Waste Depositors
+  const handleSubmit = async () => {
+    if (!selectedRole) return;
+
+    setLoading(true); // Start loading
+    setErrorMessage(""); // Clear previous errors
+
+    try {
+      // Mocking a backend call with a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      console.log("Role assignment successful:", selectedRole);
+
+      // Redirect based on the selected role
+      if (selectedRole === "collector") {
+        navigate("/homepage"); // Navigate to the homepage for Waste Collectors
+      } else if (selectedRole === "depositor") {
+        navigate("/default"); // Navigate to the Default page for Waste Depositors
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("Role assignment error:", error);
+      setErrorMessage("An error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   const handleRoleSelect = (role) => {
-    console.log("Role selected:", role);
     setSelectedRole(role);
+    setErrorMessage(""); // Clear any previous error messages
   };
 
   return (
     <div className="relative flex flex-col items-center mt-5">
+      {/* Back Button */}
       <div className="absolute left-2 top-2">
         <button onClick={handleBackClick} className="text-lg flex items-center">
           <FaArrowLeft className="mr-1" />
           Back
         </button>
       </div>
+
+      {/* Header */}
       <div className="mt-15 text-center">
         <h1 className="text-black font-semibold text-2xl w-[335.2px] h-[29px] leading-[120%] tracking-[-2%] mb-4">
           Signup As
@@ -45,7 +67,10 @@ const SignUpAs = () => {
             : "Sign up now to schedule your first waste pickup and start making an impact."}
         </p>
       </div>
+
+      {/* Role Selection */}
       <div className="flex justify-around w-full px-5">
+        {/* Waste Collector */}
         <div
           className={`w-1/2 cursor-pointer flex flex-col items-center justify-center ${
             selectedRole === "collector"
@@ -77,6 +102,8 @@ const SignUpAs = () => {
             Waste Collector
           </p>
         </div>
+
+        {/* Waste Depositor */}
         <div
           className={`w-1/2 cursor-pointer flex flex-col items-center justify-center ${
             selectedRole === "depositor"
@@ -109,15 +136,24 @@ const SignUpAs = () => {
           </p>
         </div>
       </div>
+
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="mt-4 text-red-500 text-sm text-center w-full">
+          {errorMessage}
+        </div>
+      )}
+
+      {/* Submit Button */}
       <div className="mt-20 flex justify-center w-full">
         <button
           onClick={handleSubmit}
           className={`py-2 px-4 rounded-full w-[350px] h-[40px] flex items-center justify-center gap-2 ${
             selectedRole ? "bg-green-800 cursor-pointer" : "bg-neutral-400"
           } text-white`}
-          disabled={!selectedRole}
+          disabled={!selectedRole || loading}
         >
-          Submit
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </div>
     </div>
