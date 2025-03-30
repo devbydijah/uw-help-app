@@ -14,10 +14,16 @@ const SignUpAs = () => {
   };
 
   const handleSubmit = () => {
-    // Add your submit logic here
+    console.log("Submit clicked, selectedRole:", selectedRole);
+    if (selectedRole === "collector") {
+      navigate("/homepage"); // Navigate to the homepage for Waste Collectors
+    } else if (selectedRole === "depositor") {
+      navigate("/default"); // Navigate to the Default page for Waste Depositors
+    }
   };
 
   const handleRoleSelect = (role) => {
+    console.log("Role selected:", role);
     setSelectedRole(role);
   };
 
@@ -107,7 +113,7 @@ const SignUpAs = () => {
         <button
           onClick={handleSubmit}
           className={`py-2 px-4 rounded-full w-[350px] h-[40px] flex items-center justify-center gap-2 ${
-            selectedRole ? "bg-green-800" : "bg-neutral-400"
+            selectedRole ? "bg-green-800 cursor-pointer" : "bg-neutral-400"
           } text-white`}
           disabled={!selectedRole}
         >

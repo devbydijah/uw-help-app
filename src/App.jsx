@@ -6,6 +6,8 @@ import Onboarding3 from "./components/SplashScreen/Onboarding3";
 import Register from "./components/Authentication/Register";
 import SignUpAs from "./components/Authentication/SignUpAs"; 
 import Login from "./components/Authentication/Login";
+import Homepage from "./components/Dashboard/Homepage";
+import Default from "./components/DisposeWaste/Default";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signupas" element={<SignUpAs />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/default" element={<Default />} />
       </Routes>
     </Router>
   );
