@@ -1,4 +1,6 @@
-// Homepage component for displaying the logo, carousel, and waste collectors section
+// TEMPORARY CHANGE: Data fetching removed until backend API is set up.
+// REMINDER: Re-add data fetching logic for waste collectors when the backend is ready.
+
 import React, { useState } from "react";
 import UwLogo from "../../assets/images/uw-logo2.png";
 import TrashBinImage from "../../assets/images/trashbin.png"; // Import the trash bin image
@@ -16,12 +18,25 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"; // Import the Avatar components
 
 const Homepage = () => {
-  const [activeSection, setActiveSection] = useState(1); // State to track the active section
+  const [activeSection, setActiveSection] = useState(1); // State to track the active carousel section
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu open/close
+  const [searchQuery, setSearchQuery] = useState(""); // State for search input
 
   const handleOpenChange = (open) => {
     setIsMenuOpen(open); // Update menu state
   };
+
+  // Static waste collectors data (previous content restored)
+  const wasteCollectors = [
+    { id: 1, name: "EcoClean Services", location: "Lagos" },
+    { id: 2, name: "Green Earth Collectors", location: "Abuja" },
+    { id: 3, name: "CleanCity Waste", location: "Port Harcourt" },
+  ];
+
+  // Filter waste collectors based on search query
+  const filteredCollectors = wasteCollectors.filter((collector) =>
+    collector.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="relative">
@@ -83,6 +98,8 @@ const Homepage = () => {
           <input
             type="text"
             placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 outline-none rounded-md placeholder-zinc-700 bg-transparent px-4"
           />
         </div>
@@ -182,7 +199,7 @@ const Homepage = () => {
       </div>
 
       {/* Waste Collectors Section */}
-      <WasteCollectors />
+      <WasteCollectors collectors={filteredCollectors} />
 
       {/* Footer Navigation Bar */}
       <FooterNavBar />
