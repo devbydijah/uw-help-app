@@ -10,6 +10,8 @@ const FooterNavBar = () => {
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
 
+  const unreadNotifications = 3; // Example: Number of unread notifications
+
   return (
     <div className="h-16 bg-white border-t border-stone-300 fixed bottom-0 left-0 w-full z-50">
       <nav className="flex justify-around items-center h-full">
@@ -20,7 +22,7 @@ const FooterNavBar = () => {
           className="flex flex-col items-center text-green-900"
           aria-label="Go to Home"
         >
-          <HiHome className="w-6 h-6" /> {/* Filled Home Icon */}
+          <HiHome className="w-6 h-6" />
           <span className="text-sm text-black">Home</span>
         </Link>
 
@@ -33,9 +35,11 @@ const FooterNavBar = () => {
         >
           <HiOutlineBell className="w-6 h-6" />
           {/* Notification Badge */}
-          <span className="absolute top-0 right-3 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-            3
-          </span>
+          {unreadNotifications > 0 && (
+            <span className="absolute top-0 right-3 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              {unreadNotifications}
+            </span>
+          )}
           <span className="text-sm text-black">Notification</span>
         </Link>
 

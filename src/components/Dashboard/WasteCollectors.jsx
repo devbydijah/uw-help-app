@@ -49,16 +49,13 @@ const WasteCollectors = () => {
   };
 
   return (
-    <div className="mt-2 mx-4 py-6">
+    <div className="mt-3 mx-4 py-6">
       <div>
         <h1 className="text-xl font-bold mt-4 pl-4">Waste collectors nearby</h1>
       </div>
-
       {/* Stacked Images with Content */}
       <div
-        className="space-y-4 mt-4 overflow-y-auto max-h-[calc(100vh-150px)] pb-4"
-        role="list"
-        aria-label="List of waste collectors"
+        className="space-y-4 mt-4 overflow-y-auto max-h-[calc(100vh-90px)] pb-20" // Slightly increased bottom padding and adjusted height
       >
         {collectors.map((collector) => (
           <div
@@ -70,7 +67,7 @@ const WasteCollectors = () => {
             <img
               src={collector.image}
               alt={`Trash Disposal ${collector.id}`}
-              className="w-28 h-28 rounded-md object-cover" // Slightly larger image size
+              className="w-24 h-24 rounded-md object-cover" // Reduced image size
             />
             <div className="flex-1">
               <div className="flex justify-between items-center">
@@ -106,10 +103,7 @@ const WasteCollectors = () => {
                 ))}
               </div>
               <Link to="/default" className="mt-3 inline-block">
-                <button
-                  className="bg-green-800 text-white px-2 py-1 rounded-full text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
-                  aria-label={`Book waste pickup with ${collector.name}`}
-                >
+                <button className="bg-green-800 text-white px-3 py-1.5 rounded-full text-sm cursor-pointer">
                   Book pickup
                 </button>
               </Link>
