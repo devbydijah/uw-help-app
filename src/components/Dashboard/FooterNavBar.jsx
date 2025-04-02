@@ -10,19 +10,16 @@ const FooterNavBar = () => {
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
 
-  const unreadNotifications = 3; // Example: Number of unread notifications
-
   return (
-    <div className="h-16 bg-white border-t border-stone-300 fixed bottom-0 left-0 w-full z-50">
+    <div className="h-20 bg-white border-t border-stone-300 fixed bottom-0 left-0 w-full z-50">
       <nav className="flex justify-around items-center h-full">
         {/* Home Icon */}
         <Link
           to="/homepage"
           onClick={handleScrollToTop}
           className="flex flex-col items-center text-green-900"
-          aria-label="Go to Home"
         >
-          <HiHome className="w-6 h-6" />
+          <HiHome className="w-6 h-6" /> {/* Filled Home Icon */}
           <span className="text-sm text-black">Home</span>
         </Link>
 
@@ -30,16 +27,9 @@ const FooterNavBar = () => {
         <Link
           to="/homepage"
           onClick={handleScrollToTop}
-          className="flex flex-col items-center text-neutral-500 relative"
-          aria-label="Go to Notifications"
+          className="flex flex-col items-center text-neutral-500"
         >
           <HiOutlineBell className="w-6 h-6" />
-          {/* Notification Badge */}
-          {unreadNotifications > 0 && (
-            <span className="absolute top-0 right-3 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              {unreadNotifications}
-            </span>
-          )}
           <span className="text-sm text-black">Notification</span>
         </Link>
 
@@ -48,7 +38,6 @@ const FooterNavBar = () => {
           to="/homepage"
           onClick={handleScrollToTop}
           className="flex flex-col items-center text-neutral-500"
-          aria-label="Go to Profile"
         >
           <HiOutlineUser className="w-6 h-6" />
           <span className="text-sm text-black">Profile</span>
@@ -59,7 +48,6 @@ const FooterNavBar = () => {
           to="/homepage"
           onClick={handleScrollToTop}
           className="flex flex-col items-center text-neutral-500"
-          aria-label="Go to Recycle"
         >
           <HiOutlineRefresh className="w-6 h-6" />
           <span className="text-sm text-black">Recycle</span>

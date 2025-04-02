@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom"; // Import NavLink for navigation
 import {
   HiOutlineBookOpen,
   HiOutlineArchiveBox,
@@ -14,88 +13,33 @@ const MenuItems = () => {
     <div className="flex flex-col h-full">
       {/* Menu Items */}
       <ul className="space-y-6">
-        <li>
-          <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              `flex items-center cursor-pointer ${
-                isActive ? "font-semibold" : "text-black"
-              }`
-            }
-            aria-label="Go to Dashboard"
-          >
-            <HiOutlineBookOpen className="w-5 h-5 text-purple-500 mr-2" />
-            Dashboard
-          </NavLink>
+        <li className="flex items-center text-black cursor-pointer">
+          <HiOutlineBookOpen className="w-5 h-5 text-purple-500 mr-2" />
+          Dashboard
         </li>
-        <li>
-          <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              `flex items-center cursor-pointer ${
-                isActive ? "font-semibold" : "text-black"
-              }`
-            }
-            aria-label="Go to Past Waste"
-          >
-            <HiOutlineArchiveBox className="w-5 h-5 text-blue-500 mr-2" />
-            Past Waste
-          </NavLink>
+        <li className="flex items-center text-black cursor-pointer">
+          <HiOutlineArchiveBox className="w-5 h-5 text-blue-500 mr-2" />
+          Past Waste
         </li>
-        <li>
-          <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              `flex items-center cursor-pointer ${
-                isActive ? "font-semibold" : "text-black"
-              }`
-            }
-            aria-label="Go to Subscription"
-          >
-            <HiOutlineCreditCard className="w-5 h-5 text-pink-700 mr-2" />
-            Subscription
-          </NavLink>
+        <li className="flex items-center text-black cursor-pointer">
+          <HiOutlineCreditCard className="w-5 h-5 text-pink-700 mr-2" />
+          Subscription
         </li>
-        <li>
-          <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              `flex items-center cursor-pointer ${
-                isActive ? "font-semibold" : "text-black"
-              }`
-            }
-            aria-label="Go to Support"
-          >
-            <HiOutlineQuestionMarkCircle className="w-5 h-5 text-green-500 mr-2" />
-            Support
-          </NavLink>
+        <li className="flex items-center text-black cursor-pointer">
+          <HiOutlineQuestionMarkCircle className="w-5 h-5 text-green-500 mr-2" />
+          Support
         </li>
-        <li>
-          <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              `flex items-center cursor-pointer ${
-                isActive ? "font-semibold" : "text-black"
-              }`
-            }
-            aria-label="Go to Settings"
-          >
-            <HiOutlineCog className="w-5 h-5 text-yellow-600 mr-2" />
-            Settings
-          </NavLink>
+        <li className="flex items-center text-black cursor-pointer">
+          <HiOutlineCog className="w-5 h-5 text-yellow-600 mr-2" />
+          Settings
         </li>
       </ul>
 
       {/* Logout Item */}
-      <ul className="mt-auto pt-86">
-        <li>
-          <button
-            className="flex items-center text-black cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-            aria-label="Logout"
-          >
-            <FiLogOut className="w-5 h-5 text-black mr-2" />
-            Logout
-          </button>
+      <ul className="mt-auto pt-85">
+        <li className="flex items-center text-black cursor-pointer">
+          <FiLogOut className="w-5 h-5 text-black mr-2" />
+          Logout
         </li>
       </ul>
     </div>

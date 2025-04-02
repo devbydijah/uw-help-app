@@ -1,11 +1,10 @@
-// TEMPORARY CHANGE: Backend request removed until backend is set up.
-// REMINDER: Re-enable the backend request once the backend is ready.
+// This page displays the default empty waste disposal drop-down options form for the user. It includes a list of waste categories, a preview selection, and a personalization option. The user can select their state to see the relevant waste disposal options.
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import UwLogo from "../../assets/images/uw-logo2.png";
 import { HiOutlineMenu } from "react-icons/hi";
-import { FiMapPin } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi"; // Feather Icons outlined map pin
 import {
   Select,
   SelectTrigger,
@@ -14,41 +13,27 @@ import {
   SelectLabel,
   SelectItem,
   SelectGroup,
-} from "@/components/ui/select";
+} from "@/components/ui/select"; // Import Select components from shadcn/ui
 
 const Default = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Initialize useNavigate
+  // State to track selected preferences
   const [state, setState] = useState("");
   const [wasteCategory, setWasteCategory] = useState("");
   const [wasteType, setWasteType] = useState("");
   const [collectionMethod, setCollectionMethod] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
+  // Check if all preferences are selected
   const isFormComplete =
     state !== "" &&
     wasteCategory !== "" &&
     wasteType !== "" &&
     collectionMethod !== "";
 
-  const handleSubmit = async () => {
-    if (!isFormComplete) return;
-
-    setLoading(true);
-    setErrorMessage("");
-    setSuccessMessage("");
-
-    try {
-      // Simulate a successful form submission
-      setTimeout(() => {
-        setSuccessMessage("Preferences saved successfully!");
-        navigate("/homepage"); // Navigate to homepage after success
-      }, 1000);
-    } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
+  // Handle Submit Button Click
+  const handleSubmit = () => {
+    if (isFormComplete) {
+      navigate("/homepage"); // Navigate to the homepage
     }
   };
 
@@ -200,31 +185,17 @@ const Default = () => {
             </Select>
           </div>
 
-          {/* Error Message */}
-          {errorMessage && (
-            <p className="text-red-500 text-sm mt-2" role="alert">
-              {errorMessage}
-            </p>
-          )}
-
-          {/* Success Message */}
-          {successMessage && (
-            <p className="text-green-500 text-sm mt-2" role="alert">
-              {successMessage}
-            </p>
-          )}
-
           {/* Submit Button */}
           <button
-            onClick={handleSubmit}
+            onClick={handleSubmit} // Attach handleSubmit to the button
             className={`w-full py-2 px-4 rounded-full text-white font-semibold mt-20 ${
               isFormComplete
                 ? "bg-green-800 border-green-800 cursor-pointer"
                 : "bg-neutral-400 border-neutral-400 cursor-not-allowed"
             }`}
-            disabled={!isFormComplete || loading}
+            disabled={!isFormComplete}
           >
-            {loading ? "Submitting..." : "Submit"}
+            Submit
           </button>
         </div>
       </div>

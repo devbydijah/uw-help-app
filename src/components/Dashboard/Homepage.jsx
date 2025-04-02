@@ -1,6 +1,4 @@
-// TEMPORARY CHANGE: Data fetching removed until backend API is set up.
-// REMINDER: Re-add data fetching logic for waste collectors when the backend is ready.
-
+// Homepage component for displaying the logo, carousel, and waste collectors section
 import React, { useState } from "react";
 import UwLogo from "../../assets/images/uw-logo2.png";
 import TrashBinImage from "../../assets/images/trashbin.png"; // Import the trash bin image
@@ -18,35 +16,21 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"; // Import the Avatar components
 
 const Homepage = () => {
-  const [activeSection, setActiveSection] = useState(1); // State to track the active carousel section
+  const [activeSection, setActiveSection] = useState(1); // State to track the active section
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu open/close
-  const [searchQuery, setSearchQuery] = useState(""); // State for search input
 
   const handleOpenChange = (open) => {
     setIsMenuOpen(open); // Update menu state
   };
 
-  // Static waste collectors data (previous content restored)
-  const wasteCollectors = [
-    { id: 1, name: "EcoClean Services", location: "Lagos" },
-    { id: 2, name: "Green Earth Collectors", location: "Abuja" },
-    { id: 3, name: "CleanCity Waste", location: "Port Harcourt" },
-  ];
-
-  // Filter waste collectors based on search query
-  const filteredCollectors = wasteCollectors.filter((collector) =>
-    collector.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <div className="relative">
       {/* Header Section */}
-      <div className="flex justify-between items-center p-3">
-        {" "}
-        {/* Reduced padding */}
+      <div className="flex justify-between items-center p-4">
         <div>
           <img src={UwLogo} alt="UW Logo" className="w-6 h-6" />
         </div>
+
         {/* Hamburger Icon */}
         <Sheet onOpenChange={handleOpenChange} open={isMenuOpen}>
           <SheetTrigger asChild>
@@ -71,9 +55,7 @@ const Homepage = () => {
         </Sheet>
       </div>
 
-      <div className="p-3 flex items-center">
-        {" "}
-        {/* Reduced padding */}
+      <div className="p-4 flex items-center">
         {/* Avatar Component */}
         <div className="mr-4">
           <Avatar className="w-15 h-15">
@@ -86,6 +68,7 @@ const Homepage = () => {
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
         </div>
+
         <div>
           <h1 className="text-lg font-bold">Hello, John Doe</h1>
           <p className="text-sm text-gray-600">How are you today?</p>
@@ -93,17 +76,13 @@ const Homepage = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="p-3 flex items-center">
-        {" "}
-        {/* Reduced padding */}
+      <div className="p-4 flex items-center">
         <div className="flex items-center rounded-md bg-gray-100 flex-1 p-2">
           {/* Magnifying Glass Icon */}
           <HiOutlineSearch className="w-5 h-5 text-zinc-700 ml-2" />
           <input
             type="text"
             placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 outline-none rounded-md placeholder-zinc-700 bg-transparent px-4"
           />
         </div>
@@ -124,9 +103,7 @@ const Homepage = () => {
         >
           {/* First Section */}
           <div className="w-full flex-shrink-0">
-            <div className="mt-4 mx-4 p-5 border-2 border-gray-200 rounded-md bg-gray-100">
-              {" "}
-              {/* Reduced margin and padding */}
+            <div className="mt-5 mx-4 p-6 border-2 border-gray-200 rounded-md bg-gray-100">
               <div className="flex justify-between items-center">
                 {/* Text Section */}
                 <div>
@@ -158,9 +135,7 @@ const Homepage = () => {
 
           {/* Second Section */}
           <div className="w-full flex-shrink-0">
-            <div className="mt-4 mx-4 p-5 border-2 border-gray-200 rounded-md bg-gray-100">
-              {" "}
-              {/* Reduced margin and padding */}
+            <div className="mt-5 mx-4 p-6 border-2 border-gray-200 rounded-md bg-gray-100">
               <div className="flex justify-between items-center">
                 {/* Text Section */}
                 <div>
@@ -191,9 +166,7 @@ const Homepage = () => {
       </div>
 
       {/* Scrollable Radio Buttons */}
-      <div className="flex justify-center mt-3 space-x-4">
-        {" "}
-        {/* Reduced margin */}
+      <div className="flex justify-center mt-4 space-x-4">
         <button
           className={`w-4 h-4 rounded-full ${
             activeSection === 1 ? "bg-green-800" : "bg-gray-300 cursor-pointer"
@@ -209,7 +182,7 @@ const Homepage = () => {
       </div>
 
       {/* Waste Collectors Section */}
-      <WasteCollectors collectors={filteredCollectors} />
+      <WasteCollectors />
 
       {/* Footer Navigation Bar */}
       <FooterNavBar />

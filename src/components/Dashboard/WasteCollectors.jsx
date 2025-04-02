@@ -1,6 +1,3 @@
-// TEMPORARY CHANGE: Data fetching removed until backend API is set up.
-// REMINDER: Implement data fetching for waste collectors, booking, and ratings when the backend API is ready.
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import TrashDisposal1 from "../../assets/images/trash-disposal1.png";
@@ -11,32 +8,11 @@ import { HiOutlineLocationMarker, HiDotsVertical } from "react-icons/hi"; // Imp
 import { FaStar } from "react-icons/fa"; // Import the star icon
 
 const WasteCollectors = () => {
-  // Static waste collectors data
   const collectors = [
-    {
-      id: 1,
-      name: "EcoClean Services",
-      location: "Lagos",
-      image: TrashDisposal1,
-    },
-    {
-      id: 2,
-      name: "Green Earth Collectors",
-      location: "Abuja",
-      image: TrashDisposal2,
-    },
-    {
-      id: 3,
-      name: "CleanCity Waste",
-      location: "Port Harcourt",
-      image: TrashDisposal3,
-    },
-    {
-      id: 4,
-      name: "Ugo Group Waste Disposal",
-      location: "Port Harcourt",
-      image: TrashDisposal4,
-    },
+    { id: 1, image: TrashDisposal1 },
+    { id: 2, image: TrashDisposal2 },
+    { id: 3, image: TrashDisposal3 },
+    { id: 4, image: TrashDisposal4 },
   ];
 
   const [ratings, setRatings] = useState({}); // State to track ratings for each collector
@@ -49,45 +25,36 @@ const WasteCollectors = () => {
   };
 
   return (
-    <div className="mt-3 mx-4 py-6">
+    <div className="mt-5 mx-4 py-6">
       <div>
         <h1 className="text-xl font-bold mt-4 pl-4">Waste collectors nearby</h1>
       </div>
+
       {/* Stacked Images with Content */}
-      <div
-        className="space-y-4 mt-4 overflow-y-auto max-h-[calc(100vh-90px)] pb-20" // Slightly increased bottom padding and adjusted height
-      >
+      <div className="space-y-4 mt-4">
         {collectors.map((collector) => (
-          <div
-            key={collector.id}
-            className="flex items-center space-x-4"
-            role="listitem"
-            aria-label={`Waste collector: ${collector.name}`}
-          >
+          <div key={collector.id} className="flex items-center space-x-4">
             <img
               src={collector.image}
               alt={`Trash Disposal ${collector.id}`}
-              className="w-24 h-24 rounded-md object-cover" // Reduced image size
+              className="w-32 h-32 rounded-md" // Increased image size
             />
             <div className="flex-1">
               <div className="flex justify-between items-center">
-                <h1 className="text-base font-medium">{collector.name}</h1>{" "}
-                {/* Reduced font size */}
-                <HiDotsVertical
-                  className="text-black cursor-pointer"
-                  aria-label="More options"
-                />
+                <h1 className="text-lg">
+                  {collector.id === 3
+                    ? "Ugo group waste"
+                    : "Ugo group waste disposal"}
+                </h1>
+                <HiDotsVertical className="text-black cursor-pointer" />
               </div>
-              <p
-                className="text-xs text-zinc-600 flex items-center mt-2"
-                aria-label={`Location: ${collector.location}`}
-              >
-                <HiOutlineLocationMarker className="mr-1" />{" "}
-                {collector.location}
+              <p className="text-sm text-zinc-600 flex items-center mt-2">
+                <HiOutlineLocationMarker className="mr-1" /> Rumeukpor, Port
+                Harcourt
               </p>
               {/* Star Rating */}
-              <div className="flex mt-2" role="radiogroup" aria-label="Rating">
-                {[1, 2, 3, 4, 5].map((star) => (
+              <div className="flex mt-2">
+                {[1, 2, 3].map((star) => (
                   <FaStar
                     key={star}
                     className={`cursor-pointer ${
@@ -96,15 +63,12 @@ const WasteCollectors = () => {
                         : "text-gray-300"
                     }`}
                     onClick={() => handleRating(collector.id, star)}
-                    role="radio"
-                    aria-checked={ratings[collector.id] >= star}
-                    aria-label={`${star} star`}
                   />
                 ))}
               </div>
               <Link to="/default" className="mt-3 inline-block">
-                <button className="bg-green-800 text-white px-3 py-1.5 rounded-full text-sm cursor-pointer">
-                  Book pickup
+                <button className="bg-green-800 text-white px-4 py-2 rounded-full cursor-pointer">
+                  Book waste pickup
                 </button>
               </Link>
             </div>

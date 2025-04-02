@@ -10,7 +10,6 @@ const CLIENT_ID =
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GoogleOAuthProvider clientId={CLIENT_ID}>
-      {console.log("GoogleOAuthProvider initialized")}
       <App />
     </GoogleOAuthProvider>
   </StrictMode>
