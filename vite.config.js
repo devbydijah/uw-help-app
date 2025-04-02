@@ -5,9 +5,9 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/uw-help-app/",
   plugins: [react(), tailwindcss()],
   resolve: {
-    base: "/uw-help-app/",
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
