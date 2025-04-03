@@ -8,21 +8,24 @@ import SignUpAs from "./components/Authentication/SignUpAs";
 import Login from "./components/Authentication/Login";
 import Homepage from "./components/Dashboard/Homepage";
 import Default from "./components/DisposeWaste/Default";
+import Dashboard from "./components/Dashboard/Dashboard";
+import PastWaste from "./components/Dashboard/PastWaste";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Onboarding1 />} />
-        <Route path="/onboarding2" element={<Onboarding2 />} />
-        <Route path="/onboarding3" element={<Onboarding3 />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/signupas" element={<SignUpAs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="/default" element={<Default />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Onboarding1 />} />
+      <Route path="/onboarding2" element={<Onboarding2 />} />
+      <Route path="/onboarding3" element={<Onboarding3 />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/signupas" element={<SignUpAs />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/homepage" element={<Homepage />} />
+      <Route path="/default" element={<Default />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/pastWaste" element={<PastWaste />} />
+      {/* Add more routes as needed */}
+    </Routes>
   );
 }
 
