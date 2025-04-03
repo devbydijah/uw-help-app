@@ -8,6 +8,8 @@ import SignUpAs from "./components/Authentication/SignUpAs";
 import Login from "./components/Authentication/Login";
 import Homepage from "./components/Dashboard/Homepage";
 import Default from "./components/DisposeWaste/Default";
+import Dashboard from "./components/Dashboard/Dashboard";
+import PastWaste from "./components/Dashboard/PastWaste";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/homepage" element={<Homepage />} />
       <Route path="/default" element={<Default />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/pastWaste" element={<PastWaste />} />
+      {/* Add more routes as needed */}
     </Routes>
   );
 }
