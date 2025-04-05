@@ -123,7 +123,7 @@ const Register = () => {
         className="mt-8 w-[335.198px] flex flex-col gap-4"
       >
         <input
-          className="border border-black p-2 rounded"
+          className="border border-neutral-500 p-2 rounded"
           type="text"
           placeholder="Username"
           {...register("username", { required: true })}
@@ -133,7 +133,7 @@ const Register = () => {
         )}
 
         <input
-          className="border border-black p-2 rounded"
+          className="border border-neutral-500 p-2 rounded"
           type="email"
           placeholder="Email"
           {...register("email", { required: true })}
@@ -145,7 +145,7 @@ const Register = () => {
         <div className="relative">
           <FaLock className="absolute left-3 top-3 text-gray-400" />
           <input
-            className="border border-black p-2 pl-10 pr-10 rounded w-full"
+            className="border border-neutral-500 p-2 pl-10 pr-10 rounded w-full"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             {...register("password", { required: true })}

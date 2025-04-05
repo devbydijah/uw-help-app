@@ -29,7 +29,7 @@ const UserProfile = () => {
           onClick={handleBackClick}
         />
         <h1 className="text-center text-2xl font-semibold text-black flex-grow">
-          Dashboard
+          Profile
         </h1>
       </div>
       <FooterNavBar />
