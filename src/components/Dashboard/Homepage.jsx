@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect
 import Header from "../shared/Header";
 import UserGreeting from "./UserGreeting";
 import SearchBar from "./SearchBar";
@@ -9,6 +9,11 @@ import FooterNavBar from "../shared/FooterNavBar";
 const Homepage = () => {
   const [activeSection, setActiveSection] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Scroll to the top when the page loads
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const handleOpenChange = (open) => {
     setIsMenuOpen(open);

@@ -10,6 +10,9 @@ import Homepage from "./components/Dashboard/Homepage";
 import Default from "./components/DisposeWaste/Default";
 import Dashboard from "./components/Dashboard/Dashboard";
 import PastWaste from "./components/Dashboard/PastWaste";
+import Notifications from "./components/Dashboard/Notifications";
+import UserProfile from "./components/Dashboard/UserProfile";
+import Recycle from "./components/Dashboard/Recycle";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/default" element={<Default />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pastWaste" element={<PastWaste />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/recycle" element={<Recycle />} />
       </Routes>
     </Router>
   );

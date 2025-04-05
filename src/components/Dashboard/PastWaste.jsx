@@ -1,46 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../shared/Header";
 import FooterNavBar from "../shared/FooterNavBar";
 import WasteDetailsCard from "./WasteDetailsCard";
-import RatingDialog from "./RatingDialog";
+import CompletedWasteList from "../shared/CompletedWasteList";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const PastWaste = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [rating, setRating] = useState(0); // State to store the selected rating
-  const [isRated, setIsRated] = useState(false); // State to track if the service is rated
+  const [selectedWaste, setSelectedWaste] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on load
+  }, []);
 
   const handleOpenChange = (open) => {
     setIsMenuOpen(open);
   };
 
   const handleBackClick = () => {
-    navigate("/dashboard");
+    if (selectedWaste) {
+      setSelectedWaste(null); // Go back to the list view
+    } else {
+      navigate("/dashboard");
+    }
   };
 
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-  };
-
-  const handleDialogOpen = () => {
-    setIsDialogOpen(true);
-  };
-
-  const handleRating = (value) => {
-    setRating(value); // Update the rating state
-    setIsRated(true); // Mark the service as rated
-    console.log(`Rated: ${value} stars`); // Log the rating for debugging
-  };
-
-  const handleBookWastePickup = () => {
-    navigate("/default"); // Navigate to the Default.jsx route
+  const handleWasteClick = (waste) => {
+    setSelectedWaste(waste); // Set the selected waste item
   };
 
   return (
-    <div className="bg-white min-h-screen overflow-y-auto relative pb-20">
+    <div className="bg-white min-h-screen flex flex-col">
       <Header isMenuOpen={isMenuOpen} handleOpenChange={handleOpenChange} />
       <div className="flex items-center justify-between mt-4 px-4">
         <AiOutlineArrowLeft
@@ -52,48 +44,21 @@ const PastWaste = () => {
         </h1>
       </div>
 
-      <div className="mt-10">
-        <h2 className="text-left ml-3 text-2xl font-semibold text-black">
-          Completed Waste
-        </h2>
-      </div>
-
-      <div className="flex justify-center mt-6">
-        <WasteDetailsCard
-          imageSrc="../../assets/images/completed-waste.png"
-          paymentStatus="Paid"
-          collectionStatus="Picked"
-          formattedDate="20th Oct, 2024"
-          formattedTime="10:30 AM"
-        />
-      </div>
-
-      <div className="mt-6 flex justify-center">
-        <button
-          onClick={handleBookWastePickup} // Add the click handler here
-          className="px-6 py-2 text-white bg-green-800 border border-green-800 rounded-full cursor-pointer"
-        >
-          Book Waste Pickup
-        </button>
-      </div>
-
-      <div className="mt-6 flex justify-center">
-        <button
-          onClick={handleDialogOpen}
-          className="px-6 py-2 text-black bg-white border border-green-950 rounded-full transition-colors duration-400 ease-in-out hover:bg-neutral-200 hover:text-green-950 cursor-pointer"
-        >
-          Rate Services
-        </button>
-      </div>
-
-      <div className="mt-6 flex justify-center">
-        <RatingDialog
-          isDialogOpen={isDialogOpen}
-          handleDialogClose={handleDialogClose}
-          handleRating={handleRating} // Pass the handleRating function
-          rating={rating} // Pass the current rating
-          isRated={isRated} // Pass whether the service is rated
-        />
+      <div className="flex-grow">
+        {selectedWaste ? (
+          // Show WasteDetailsCard if a waste is selected
+          <div className="flex justify-center mt-6">
+            <WasteDetailsCard
+              paymentStatus={selectedWaste.paymentStatus}
+              collectionStatus={selectedWaste.collectionStatus}
+              formattedDate={selectedWaste.date}
+              formattedTime={selectedWaste.time}
+            />
+          </div>
+        ) : (
+          // Show CompletedWasteList if no waste is selected
+          <CompletedWasteList onCardClick={handleWasteClick} />
+        )}
       </div>
 
       <FooterNavBar />
