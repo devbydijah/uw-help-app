@@ -1,0 +1,5 @@
+.ai-style-change-1 {
+  &[data-state="checked"]& {
+    data-state: checked;
+  }
+}
