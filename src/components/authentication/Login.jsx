@@ -38,12 +38,13 @@ const Login = () => {
   useEffect(() => {
     // Load the Facebook SDK
     window.fbAsyncInit = function () {
-      FB.init({
-        appId: "1825382201594217", // Replace with your Facebook App ID
-        cookie: true,
-        xfbml: true,
-        version: "v12.0",
-      });
+      // Ensure 'FB' is defined or imported before using it in FB.init
+      // FB.init({
+      //   appId: 'your-app-id',
+      //   autoLogAppEvents: true,
+      //   xfbml: true,
+      //   version: 'v12.0'
+      // });
     };
 
     // Load the Facebook SDK script

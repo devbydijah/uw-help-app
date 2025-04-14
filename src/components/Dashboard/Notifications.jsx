@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../shared/Header";
 import FooterNavBar from "../shared/FooterNavBar";
@@ -6,11 +6,20 @@ import { FaArrowLeft } from "react-icons/fa";
 import { AiOutlineChrome } from "react-icons/ai";
 import { FaChevronDown } from "react-icons/fa";
 
-const Notifications = () => {
+/**
+ * Marks a notification as read.
+ * @param {number} notificationId - The ID of the notification to mark as read.
+ */
+function markAsRead(notificationId) {
+  console.log(`Notification ${notificationId} marked as read`);
+}
+
+// Memoize the Notifications component to prevent unnecessary re-renders
+const Notifications = memo(() => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -21,6 +30,11 @@ const Notifications = () => {
       navigate(-1);
     }
   };
+
+  // Memoize the event handler for marking notifications as read
+  const handleMarkAsRead = useCallback((notificationId) => {
+    markAsRead(notificationId);
+  }, []);
 
   const notifications = [
     {
@@ -111,7 +125,10 @@ const Notifications = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center justify-center bg-neutral-400 border border-neutral-400 rounded-full p-1 cursor-pointer">
+              <div
+                className="flex items-center justify-center bg-neutral-400 border border-neutral-400 rounded-full p-1 cursor-pointer"
+                onClick={() => handleMarkAsRead(notification.id)}
+              >
                 <FaChevronDown className="text-black text-base" />
               </div>
             </div>
@@ -122,6 +139,6 @@ const Notifications = () => {
       <FooterNavBar />
     </div>
   );
-};
+});
 
 export default Notifications;

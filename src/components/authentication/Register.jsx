@@ -1,3 +1,9 @@
+// Component: Register
+// Purpose: Handles user registration functionality.
+// - Displays a registration form with fields for user details.
+// - Validates user input and submits the form to create a new account.
+// - Redirects to the login page upon successful registration.
+
 // TODO: Remember to set up HTTPS for your domain before deploying to production
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
@@ -37,28 +43,32 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Load the Facebook SDK
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: "1825382201594217", // Replace with your Facebook App ID
-        cookie: true,
-        xfbml: true,
-        version: "v12.0",
-      });
+    // Load the Facebook SDK script
+    const loadFacebookSDK = () => {
+      if (window.FB) {
+        window.FB.init({
+          appId: "1825382201594217", // Replace with your Facebook App ID
+          cookie: true,
+          xfbml: true,
+          version: "v12.0",
+        });
+      } else {
+        const script = document.createElement("script");
+        script.src = "https://connect.facebook.net/en_US/sdk.js";
+        script.async = true;
+        script.onload = () => {
+          window.FB.init({
+            appId: "1825382201594217", // Replace with your Facebook App ID
+            cookie: true,
+            xfbml: true,
+            version: "v12.0",
+          });
+        };
+        document.body.appendChild(script);
+      }
     };
 
-    // Load the Facebook SDK script
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
+    loadFacebookSDK();
   }, []);
 
   const onSubmit = async (data) => {
@@ -231,4 +241,8 @@ const Register = () => {
   );
 };
 
+/**
+ * Validates the registration form inputs.
+ * @returns {boolean} - True if all inputs are valid, false otherwise.
+ */
 export default Register;

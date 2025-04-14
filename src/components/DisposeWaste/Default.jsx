@@ -1,3 +1,8 @@
+// Component: Default (Dispose Waste)
+// Purpose: Allows users to select waste disposal preferences.
+// - Provides a form with options for waste type and collection method.
+// - Submits the selected preferences to schedule a waste pickup.
+
 // This page displays the default empty waste disposal drop-down options form for the user. It includes a list of waste categories, a preview selection, and a personalization option. The user can select their state to see the relevant waste disposal options.
 
 import React, { useState } from "react";
@@ -30,12 +35,14 @@ const Default = () => {
     wasteType !== "" &&
     collectionMethod !== "";
 
-  // Handle Submit Button Click
-  const handleSubmit = () => {
+  /**
+   * Handles form submission for waste disposal preferences.
+   */
+  function handleDispose() {
     if (isFormComplete) {
       navigate("/homepage"); // Navigate to the homepage
     }
-  };
+  }
 
   return (
     <div>
@@ -63,7 +70,11 @@ const Default = () => {
           {/* States Available */}
           <div className="mb-4">
             <Select onValueChange={(value) => setState(value)}>
-              <SelectTrigger id="state" className="w-full">
+              <SelectTrigger
+                id="state"
+                className="w-full"
+                aria-label="Select your state"
+              >
                 <SelectValue
                   placeholder={
                     <div className="flex items-center gap-2">
@@ -101,7 +112,11 @@ const Default = () => {
           {/* Waste Category */}
           <div className="mb-4">
             <Select onValueChange={(value) => setWasteCategory(value)}>
-              <SelectTrigger id="waste-category" className="w-full">
+              <SelectTrigger
+                id="waste-category"
+                className="w-full"
+                aria-label="Select waste category"
+              >
                 <SelectValue
                   placeholder={
                     <span className="text-neutral-500">
@@ -132,7 +147,11 @@ const Default = () => {
           {/* Waste Type */}
           <div className="mb-4">
             <Select onValueChange={(value) => setWasteType(value)}>
-              <SelectTrigger id="waste-type" className="w-full">
+              <SelectTrigger
+                id="waste-type"
+                className="w-full"
+                aria-label="Select waste type"
+              >
                 <SelectValue
                   placeholder={
                     <span className="text-neutral-500">
@@ -160,7 +179,11 @@ const Default = () => {
           {/* Collection Method */}
           <div className="mb-4">
             <Select onValueChange={(value) => setCollectionMethod(value)}>
-              <SelectTrigger id="collection-method" className="w-full">
+              <SelectTrigger
+                id="collection-method"
+                className="w-full"
+                aria-label="Select collection method"
+              >
                 <SelectValue
                   placeholder={
                     <span className="text-neutral-500">
@@ -187,7 +210,7 @@ const Default = () => {
 
           {/* Submit Button */}
           <button
-            onClick={handleSubmit} // Attach handleSubmit to the button
+            onClick={handleDispose} // Attach handleSubmit to the button
             className={`w-full py-2 px-4 rounded-full text-white font-semibold mt-20 ${
               isFormComplete
                 ? "bg-green-800 border-green-800 cursor-pointer"
