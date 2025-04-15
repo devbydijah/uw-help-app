@@ -18,7 +18,7 @@ const SignUpAs = () => {
     if (selectedRole === "collector") {
       navigate("/homepage");
     } else if (selectedRole === "depositor") {
-      navigate("/default");
+      navigate("/homepage");
     }
   };
 
