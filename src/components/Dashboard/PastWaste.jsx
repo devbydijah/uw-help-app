@@ -12,7 +12,7 @@ const PastWaste = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on load
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const handleOpenChange = (open) => {
@@ -21,33 +21,32 @@ const PastWaste = () => {
 
   const handleBackClick = () => {
     if (selectedWaste) {
-      setSelectedWaste(null); // Go back to the list view
+      setSelectedWaste(null);
     } else {
       navigate("/dashboard");
     }
   };
 
   const handleWasteClick = (waste) => {
-    setSelectedWaste(waste); // Set the selected waste item
+    setSelectedWaste(waste);
   };
 
   return (
-    <div className={`bg-white min-h-screen flex flex-col ${isMenuOpen ? 'inert' : ''}`}>
+    <div className={`bg-white min-h-screen flex flex-col ${isMenuOpen ? 'inert' : ''} px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40`}>
       <Header isMenuOpen={isMenuOpen} handleOpenChange={handleOpenChange} />
-      <div className="flex items-center justify-between mt-4 px-4">
+      <div className="flex items-center justify-between mt-4">
         <AiOutlineArrowLeft
           onClick={handleBackClick}
-          className="text-lg cursor-pointer"
+          className="text-lg cursor-pointer sm:text-xl md:text-2xl"
         />
-        <h1 className="text-center text-2xl font-semibold text-black flex-grow">
+        <h1 className="text-center text-2xl font-semibold text-black flex-grow sm:text-3xl md:text-4xl">
           Past Waste
         </h1>
       </div>
 
-      <div className="flex-grow">
+      <div className="flex-grow mt-4 sm:mt-6 md:mt-8 lg:mt-10">
         {selectedWaste ? (
-          // Show WasteDetailsCard if a waste is selected
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center">
             <WasteDetailsCard
               paymentStatus={selectedWaste.paymentStatus}
               collectionStatus={selectedWaste.collectionStatus}
@@ -56,7 +55,6 @@ const PastWaste = () => {
             />
           </div>
         ) : (
-          // Show CompletedWasteList if no waste is selected
           <CompletedWasteList onCardClick={handleWasteClick} />
         )}
       </div>

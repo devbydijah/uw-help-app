@@ -9,7 +9,7 @@ const FooterNavBar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-13 bg-white border-t border-stone-300 sticky bottom-0 left-0 w-full z-50">
+    <div className="h-13 bg-white border-t border-stone-300 sticky bottom-0 left-0 w-full z-50 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       <nav className="flex justify-around items-center min-h-full">
         {/* Home Icon */}
         <Link
@@ -20,12 +20,12 @@ const FooterNavBar = () => {
           className="flex flex-col items-center"
         >
           {location.pathname === "/homepage" ? (
-            <HiHome className="w-6 h-6 text-green-900" />
+            <HiHome className="w-6 h-6 text-green-900 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           ) : (
-            <HiOutlineHome className="w-6 h-6 text-black" />
+            <HiOutlineHome className="w-6 h-6 text-black sm:w-7 sm:h-7 md:w-8 md:h-8" />
           )}
           <span
-            className={`text-sm ${
+            className={`text-sm sm:text-base md:text-lg ${
               location.pathname === "/homepage"
                 ? "text-green-900"
                 : "text-black"
@@ -44,12 +44,12 @@ const FooterNavBar = () => {
           className="flex flex-col items-center"
         >
           {location.pathname === "/notifications" ? (
-            <HiBell className="w-6 h-6 text-green-900" />
+            <HiBell className="w-6 h-6 text-green-900 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           ) : (
-            <HiOutlineBell className="w-6 h-6 text-black" />
+            <HiOutlineBell className="w-6 h-6 text-black sm:w-7 sm:h-7 md:w-8 md:h-8" />
           )}
           <span
-            className={`text-sm ${
+            className={`text-sm sm:text-base md:text-lg ${
               location.pathname === "/notifications"
                 ? "text-green-900"
                 : "text-black"
@@ -68,12 +68,12 @@ const FooterNavBar = () => {
           className="flex flex-col items-center"
         >
           {location.pathname === "/userProfile" ? (
-            <HiUser className="w-6 h-6 text-green-900" />
+            <HiUser className="w-6 h-6 text-green-900 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           ) : (
-            <HiOutlineUser className="w-6 h-6 text-black" />
+            <HiOutlineUser className="w-6 h-6 text-black sm:w-7 sm:h-7 md:w-8 md:h-8" />
           )}
           <span
-            className={`text-sm ${
+            className={`text-sm sm:text-base md:text-lg ${
               location.pathname === "/userProfile"
                 ? "text-green-900"
                 : "text-black"
@@ -92,12 +92,12 @@ const FooterNavBar = () => {
           className="flex flex-col items-center"
         >
           {location.pathname === "/recycle" ? (
-            <HiRefresh className="w-6 h-6 text-green-900" />
+            <HiRefresh className="w-6 h-6 text-green-900 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           ) : (
-            <HiOutlineRefresh className="w-6 h-6 text-black" />
+            <HiOutlineRefresh className="w-6 h-6 text-black sm:w-7 sm:h-7 md:w-8 md:h-8" />
           )}
           <span
-            className={`text-sm ${
+            className={`text-sm sm:text-base md:text-lg ${
               location.pathname === "/recycle" ? "text-green-900" : "text-black"
             }`}
           >

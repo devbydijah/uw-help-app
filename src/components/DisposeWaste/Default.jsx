@@ -6,10 +6,10 @@
 // This page displays the default empty waste disposal drop-down options form for the user. It includes a list of waste categories, a preview selection, and a personalization option. The user can select their state to see the relevant waste disposal options.
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import UwLogo from "../../assets/images/uw-logo2.png";
 import { HiOutlineMenu } from "react-icons/hi";
-import { FiMapPin } from "react-icons/fi"; // Feather Icons outlined map pin
+import { FiMapPin } from "react-icons/fi";
 import {
   Select,
   SelectTrigger,
@@ -18,56 +18,47 @@ import {
   SelectLabel,
   SelectItem,
   SelectGroup,
-} from "@/components/ui/select"; // Import Select components from shadcn/ui
+} from "@/components/ui/select";
 
 const Default = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
-  // State to track selected preferences
+  const navigate = useNavigate();
   const [state, setState] = useState("");
   const [wasteCategory, setWasteCategory] = useState("");
   const [wasteType, setWasteType] = useState("");
   const [collectionMethod, setCollectionMethod] = useState("");
 
-  // Check if all preferences are selected
   const isFormComplete =
     state !== "" &&
     wasteCategory !== "" &&
     wasteType !== "" &&
     collectionMethod !== "";
 
-  /**
-   * Handles form submission for waste disposal preferences.
-   */
   function handleDispose() {
     if (isFormComplete) {
-      navigate("/homepage"); // Navigate to the homepage
+      navigate("/homepage");
     }
   }
 
   return (
-    <div>
-      {/* Header Section */}
+    <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       <div className="flex justify-between items-center p-4">
         <div>
-          <img src={UwLogo} alt="UW Logo" className="w-6 h-6" />
+          <img src={UwLogo} alt="UW Logo" className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
         </div>
         <button className="cursor-pointer">
-          <HiOutlineMenu className="w-6 h-6 text-black opacity-70" />
+          <HiOutlineMenu className="w-6 h-6 text-black opacity-70 sm:w-8 sm:h-8 md:w-10 md:h-10" />
         </button>
       </div>
 
-      {/* Waste Disposal Preferences */}
       <div className="p-4">
-        {/* Title Section */}
         <div className="mt-6 text-center">
-          <h1 className="text-2xl font-bold mb-3">Dispose Waste</h1>
-          <p className="text-lg text-neutral-500">
+          <h1 className="text-2xl font-bold mb-3 sm:text-3xl md:text-4xl">Dispose Waste</h1>
+          <p className="text-lg text-neutral-500 sm:text-xl md:text-2xl">
             Let’s set up your waste disposal preferences
           </p>
         </div>
 
         <div className="mt-20">
-          {/* States Available */}
           <div className="mb-4">
             <Select onValueChange={(value) => setState(value)}>
               <SelectTrigger
@@ -78,8 +69,8 @@ const Default = () => {
                 <SelectValue
                   placeholder={
                     <div className="flex items-center gap-2">
-                      <FiMapPin className="w-5 h-5 text-neutral-500" />
-                      <span className="text-neutral-500">Enter location</span>
+                      <FiMapPin className="w-5 h-5 text-neutral-500 sm:w-6 sm:h-6 md:w-7 md:h-7" />
+                      <span className="text-neutral-500 sm:text-base md:text-lg">Enter location</span>
                     </div>
                   }
                 />
@@ -109,7 +100,6 @@ const Default = () => {
             </Select>
           </div>
 
-          {/* Waste Category */}
           <div className="mb-4">
             <Select onValueChange={(value) => setWasteCategory(value)}>
               <SelectTrigger
@@ -119,7 +109,7 @@ const Default = () => {
               >
                 <SelectValue
                   placeholder={
-                    <span className="text-neutral-500">
+                    <span className="text-neutral-500 sm:text-base md:text-lg">
                       Select waste category
                     </span>
                   }
@@ -144,7 +134,6 @@ const Default = () => {
             </Select>
           </div>
 
-          {/* Waste Type */}
           <div className="mb-4">
             <Select onValueChange={(value) => setWasteType(value)}>
               <SelectTrigger
@@ -154,7 +143,7 @@ const Default = () => {
               >
                 <SelectValue
                   placeholder={
-                    <span className="text-neutral-500">
+                    <span className="text-neutral-500 sm:text-base md:text-lg">
                       What type of waste do you want to dispose?
                     </span>
                   }
@@ -176,7 +165,6 @@ const Default = () => {
             </Select>
           </div>
 
-          {/* Collection Method */}
           <div className="mb-4">
             <Select onValueChange={(value) => setCollectionMethod(value)}>
               <SelectTrigger
@@ -186,7 +174,7 @@ const Default = () => {
               >
                 <SelectValue
                   placeholder={
-                    <span className="text-neutral-500">
+                    <span className="text-neutral-500 sm:text-base md:text-lg">
                       Preferred collection method
                     </span>
                   }
@@ -208,10 +196,9 @@ const Default = () => {
             </Select>
           </div>
 
-          {/* Submit Button */}
           <button
-            onClick={handleDispose} // Attach handleSubmit to the button
-            className={`w-full py-2 px-4 rounded-full text-white font-semibold mt-20 ${
+            onClick={handleDispose}
+            className={`w-full py-2 px-4 rounded-full text-white font-semibold mt-20 sm:py-3 sm:px-6 md:py-4 md:px-8 ${
               isFormComplete
                 ? "bg-green-800 border-green-800 cursor-pointer"
                 : "bg-neutral-400 border-neutral-400 cursor-not-allowed"

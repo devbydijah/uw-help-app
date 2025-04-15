@@ -16,9 +16,9 @@ const SignUpAs = () => {
   const handleSubmit = () => {
     console.log("Submit clicked, selectedRole:", selectedRole);
     if (selectedRole === "collector") {
-      navigate("/homepage"); // Navigate to the homepage for Waste Collectors
+      navigate("/homepage");
     } else if (selectedRole === "depositor") {
-      navigate("/default"); // Navigate to the Default page for Waste Depositors
+      navigate("/default");
     }
   };
 
@@ -28,49 +28,42 @@ const SignUpAs = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center mt-5">
+    <div className="relative flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       <div className="absolute left-2 top-2">
-        <button onClick={handleBackClick} className="text-lg flex items-center">
+        <button
+          onClick={handleBackClick}
+          className="text-lg flex items-center sm:text-xl md:text-2xl"
+        >
           <FaArrowLeft className="mr-1" />
           Back
         </button>
       </div>
-      <div className="mt-15 text-center">
-        <h1 className="text-black font-semibold text-2xl w-[335.2px] h-[29px] leading-[120%] tracking-[-2%] mb-4">
+      <div className="mt-10 text-center w-full max-w-md lg:max-w-lg xl:max-w-xl">
+        <h1 className="text-black font-semibold text-2xl sm:text-3xl md:text-4xl mb-4">
           Signup As
         </h1>
-        <p className="text-neutral-500 w-[335.2px] h-[48px]">
+        <p className="text-neutral-500 text-sm sm:text-base md:text-lg">
           {selectedRole
             ? "Choose who you want to signup as"
             : "Sign up now to schedule your first waste pickup and start making an impact."}
         </p>
       </div>
-      <div className="flex justify-around w-full px-5">
+      <div className="flex flex-wrap justify-around w-full mt-8 gap-4">
         <div
-          className={`w-1/2 cursor-pointer flex flex-col items-center justify-center ${
+          className={`cursor-pointer flex flex-col items-center justify-center w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-64 lg:w-64 lg:h-72 rounded-lg p-3 transition-all duration-300 ${
             selectedRole === "collector"
               ? "shadow-lg border-4 border-green-900 bg-green-900 text-white"
-              : ""
+              : "bg-white"
           }`}
-          style={{
-            width: "150px",
-            height: "200px",
-            borderRadius: "12px",
-            padding: "12px",
-            boxShadow:
-              selectedRole === "collector"
-                ? "0px 4px 10px 0px #0000001A"
-                : "none",
-          }}
           onClick={() => handleRoleSelect("collector")}
         >
           <img
             src={WasteCollector}
             alt="Waste Collector"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-md"
           />
           <p
-            className={`mt-2 font-bold text-sm ${
+            className={`mt-2 font-bold text-sm sm:text-base md:text-lg ${
               selectedRole === "collector" ? "text-white" : "text-black"
             }`}
           >
@@ -78,30 +71,20 @@ const SignUpAs = () => {
           </p>
         </div>
         <div
-          className={`w-1/2 cursor-pointer flex flex-col items-center justify-center ${
+          className={`cursor-pointer flex flex-col items-center justify-center w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-64 lg:w-64 lg:h-72 rounded-lg p-3 transition-all duration-300 ${
             selectedRole === "depositor"
               ? "shadow-lg border-4 border-green-900 bg-green-900 text-white"
-              : ""
+              : "bg-white"
           }`}
-          style={{
-            width: "150px",
-            height: "200px",
-            borderRadius: "12px",
-            padding: "12px",
-            boxShadow:
-              selectedRole === "depositor"
-                ? "0px 4px 10px 0px #0000001A"
-                : "none",
-          }}
           onClick={() => handleRoleSelect("depositor")}
         >
           <img
             src={WasteDepositor}
             alt="Waste Depositor"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-md"
           />
           <p
-            className={`mt-2 font-bold text-sm ${
+            className={`mt-2 font-bold text-sm sm:text-base md:text-lg ${
               selectedRole === "depositor" ? "text-white" : "text-black"
             }`}
           >
@@ -109,12 +92,12 @@ const SignUpAs = () => {
           </p>
         </div>
       </div>
-      <div className="mt-20 flex justify-center w-full">
+      <div className="mt-10 flex justify-center w-full">
         <button
           onClick={handleSubmit}
-          className={`py-2 px-4 rounded-full w-[350px] h-[40px] flex items-center justify-center gap-2 ${
+          className={`py-2 px-4 rounded-full w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg ${
             selectedRole ? "bg-green-800 cursor-pointer" : "bg-neutral-400"
-          } text-white`}
+          } text-white transition-all duration-300`}
           disabled={!selectedRole}
         >
           Submit

@@ -18,7 +18,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAc75lzWPr4e0AY43V_k0Dy_Ofz4A4FOFY",
   authDomain: "urban-waste-help-6cb52.firebaseapp.com",
@@ -28,7 +27,6 @@ const firebaseConfig = {
   appId: "1:489957749468:web:9b150e6e013c5597157a19",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -43,11 +41,10 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Load the Facebook SDK script
     const loadFacebookSDK = () => {
       if (window.FB) {
         window.FB.init({
-          appId: "1825382201594217", // Replace with your Facebook App ID
+          appId: "1825382201594217",
           cookie: true,
           xfbml: true,
           version: "v12.0",
@@ -58,7 +55,7 @@ const Register = () => {
         script.async = true;
         script.onload = () => {
           window.FB.init({
-            appId: "1825382201594217", // Replace with your Facebook App ID
+            appId: "1825382201594217",
             cookie: true,
             xfbml: true,
             version: "v12.0",
@@ -79,10 +76,8 @@ const Register = () => {
         data.password
       );
       console.log("User registered:", userCredential.user);
-      // Navigate to another page or show a success message
     } catch (error) {
       console.error("Error registering user:", error);
-      // Handle registration errors
     }
   };
 
@@ -99,11 +94,10 @@ const Register = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log("Facebook sign-in successful:", result.user);
-        navigate("/signupas"); // Redirect to SignUpAs page
+        navigate("/signupas");
       })
       .catch((error) => {
         console.error("Error with Facebook sign-in:", error);
-        // Handle sign-in errors
       });
   };
 
@@ -112,17 +106,19 @@ const Register = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40 mt-4 sm:mt-6 md:mt-8 lg:mt-10">
       <FaArrowLeft
-        className="absolute w-4 h-4 top-[4px] left-[4px] text-zinc-900 cursor-pointer"
+        className="absolute w-4 h-4 top-8 left-4 text-zinc-900 cursor-pointer sm:w-5 sm:h-5 md:w-6 md:h-6"
         onClick={handleBackClick}
       />
-      <div className="mt-16 text-center w-[335.198px] h-[88px] top-[124.88px] left-[41.8px] gap-[11px] flex flex-col items-center">
-        <div className="w-[335.2px] h-[29px] leading-[120%] tracking-[-2%]">
-          <h1 className="text-2xl font-semibold">Let’s Get Started!</h1>
+      <div className="mt-16 text-center w-full max-w-md lg:max-w-lg xl:max-w-xl">
+        <div className="w-full">
+          <h1 className="text-2xl font-semibold sm:text-3xl md:text-4xl">
+            Let’s Get Started!
+          </h1>
         </div>
-        <div className="w-[335.2px] h-[48px] text-neutral-500">
-          <p className="text-lg font-normal">
+        <div className="w-full mt-2">
+          <p className="text-lg font-normal text-neutral-500 sm:text-xl md:text-2xl">
             Sign up now to schedule your first waste pickup and start making an
             impact.
           </p>
@@ -130,10 +126,10 @@ const Register = () => {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-8 w-[335.198px] flex flex-col gap-4"
+        className="mt-8 w-full max-w-md flex flex-col gap-4"
       >
         <input
-          className="border border-neutral-500 p-2 rounded"
+          className="border border-neutral-500 p-2 rounded w-full"
           type="text"
           placeholder="Username"
           {...register("username", { required: true })}
@@ -143,7 +139,7 @@ const Register = () => {
         )}
 
         <input
-          className="border border-neutral-500 p-2 rounded"
+          className="border border-neutral-500 p-2 rounded w-full"
           type="email"
           placeholder="Email"
           {...register("email", { required: true })}
@@ -175,7 +171,7 @@ const Register = () => {
           <span className="text-red-500">Password is required</span>
         )}
 
-        <div className="flex justify-between items-center mt-4 w-[335.198px]">
+        <div className="flex justify-between items-center mt-4">
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -195,16 +191,16 @@ const Register = () => {
 
         <button
           type="submit"
-          className="bg-green-800 text-white p-2 rounded-full mt-4 cursor-pointer"
+          className="bg-green-800 text-white p-2 rounded-full mt-4 cursor-pointer hover:bg-green-700 transition-all"
         >
           Submit
         </button>
       </form>
       <div className="mt-4 text-center">
-        <p className="text-sm">
+        <p className="text-sm sm:text-base">
           Already have an account?{" "}
           <span
-            className="text-green-800 cursor-pointer"
+            className="text-green-800 cursor-pointer hover:underline"
             onClick={handleLoginClick}
           >
             Login
@@ -220,7 +216,7 @@ const Register = () => {
         <GoogleLogin
           onSuccess={(response) => {
             console.log("Google sign-up successful", response);
-            navigate("/signupas"); // Redirect to SignUpAs page
+            navigate("/signupas");
           }}
           onError={() => {
             console.log("Google sign-up failed");
