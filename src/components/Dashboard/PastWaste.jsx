@@ -32,7 +32,7 @@ const PastWaste = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <div className={`bg-white min-h-screen flex flex-col ${isMenuOpen ? 'inert' : ''}`}>
       <Header isMenuOpen={isMenuOpen} handleOpenChange={handleOpenChange} />
       <div className="flex items-center justify-between mt-4 px-4">
         <AiOutlineArrowLeft

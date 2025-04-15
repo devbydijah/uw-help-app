@@ -6,30 +6,24 @@ import { FaArrowLeft, FaChevronRight, FaCircleNotch } from "react-icons/fa";
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 import { Label } from "../ui/label";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-} from "../ui/dialog";
-import { Select, SelectTrigger, SelectContent, SelectItem } from "../ui/select";
 import { Switch } from "../ui/switch";
+import CompleteImage from "../../assets/images/complete.png";
+import EditProfile from "./EditProfile"; // Import the new EditProfile page
 
 const UserProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true); // Set initial state to checked
-  const [userDetails, setUserDetails] = useState({
+  const [userDetails] = useState({
     name: "Courtney Henry",
     address: "2118 Thornridge Cir. Syracuse 35624",
     email: "georgia.young@example.com",
   });
-  const [phoneDetails, setPhoneDetails] = useState({
+  const [phoneDetails] = useState({
     countryCode: "+234",
     phoneNumber: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,41 +47,6 @@ const UserProfile = () => {
     });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
-
-  const handlePhoneChange = (e) => {
-    const { name, value } = e.target;
-    setPhoneDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
-
-  const handleCountryCodeChange = (value) => {
-    setPhoneDetails((prevDetails) => ({
-      ...prevDetails,
-      countryCode: value,
-    }));
-  };
-
-  const handleSaveClick = () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      localStorage.setItem("userDetails", JSON.stringify(userDetails));
-      localStorage.setItem("phoneDetails", JSON.stringify(phoneDetails));
-
-      setIsLoading(false);
-      setIsSuccess(true);
-    }, 2000);
-  };
-
   return (
     <div>
       {isLoading && (
@@ -104,27 +63,7 @@ const UserProfile = () => {
         </div>
       )}
 
-      {isSuccess && (
-        <div className="flex flex-col items-center justify-center h-screen">
-          <img
-            src="/assets/images/thumbs-up.png"
-            alt="Success"
-            className="w-16 h-16"
-          />
-          <p className="text-lg font-semibold mt-4">Profile edit successfully</p>
-          <button
-            onClick={() => {
-              setIsSuccess(false);
-              navigate("/homepage");
-            }}
-            className="text-green-600 underline mt-2"
-          >
-            Go back homepage
-          </button>
-        </div>
-      )}
-
-      {!isLoading && !isSuccess && (
+      {!isLoading && (
         <>
           <Header />
           <div className="flex items-center justify-between mt-4 px-4">
@@ -146,7 +85,9 @@ const UserProfile = () => {
               />
               <div
                 className="absolute bottom-0 right-0 bg-white rounded-full p-1 cursor-pointer"
-                onClick={() => document.getElementById("profile-upload").click()}
+                onClick={() =>
+                  document.getElementById("profile-upload").click()
+                }
               >
                 <MdOutlineCameraAlt className="text-green-900 text-md" />
               </div>
@@ -163,94 +104,23 @@ const UserProfile = () => {
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <h2 className="text-lg font-semibold">{userDetails.name}</h2>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="flex items-center text-green-900 text-base font-semibold underline">
-                    <FiEdit2 className="mr-1 text-lg" /> Edit
-                  </button>
-                </DialogTrigger>
-                <DialogContent
-                  className="bg-white border border-neutral-300 rounded-lg p-6 shadow-md w-full max-w-md mx-auto"
-                  aria-describedby="dialog-description"
-                  onOpenAutoFocus={(e) => e.preventDefault()}
-                >
-                  <DialogTitle className="text-lg font-semibold text-center mb-4">
-                    Edit Profile
-                  </DialogTitle>
-                  <p id="dialog-description" className="text-sm text-black mb-4">
-                    Basic Information
-                  </p>
-                  <div className="flex flex-col space-y-4">
-                    <input
-                      type="text"
-                      name="name"
-                      value={userDetails.name}
-                      onChange={handleInputChange}
-                      className="border border-neutral-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholder="First Name"
-                    />
-                    <input
-                      type="text"
-                      name="address"
-                      value={userDetails.address}
-                      onChange={handleInputChange}
-                      className="border border-neutral-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholder="Address"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      value={userDetails.email}
-                      onChange={handleInputChange}
-                      className="border border-neutral-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholder="Email"
-                    />
-                    <div className="flex space-x-2">
-                      <Select
-                        onValueChange={handleCountryCodeChange}
-                        value={phoneDetails.countryCode}
-                      >
-                        <SelectTrigger className="border border-neutral-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-green-500">
-                          {phoneDetails.countryCode}
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border border-neutral-300 rounded-lg">
-                          <SelectItem value="+234">🇳🇬</SelectItem>
-                          <SelectItem value="+233">🇬🇭</SelectItem>
-                          <SelectItem value="+221">🇸🇳</SelectItem>
-                          <SelectItem value="+225">🇨🇮</SelectItem>
-                          <SelectItem value="+220">🇬🇲</SelectItem>
-                          <SelectItem value="+229">🇧🇯</SelectItem>
-                          <SelectItem value="+226">🇧🇫</SelectItem>
-                          <SelectItem value="+228">🇹🇬</SelectItem>
-                          <SelectItem value="+223">🇲🇱</SelectItem>
-                          <SelectItem value="+224">🇬🇳</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <input
-                        type="text"
-                        name="phoneNumber"
-                        value={phoneDetails.phoneNumber}
-                        onChange={handlePhoneChange}
-                        className="border border-neutral-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Phone Number"
-                      />
-                    </div>
-                    <button
-                      onClick={() => {
-                        handleSaveClick();
-                      }}
-                      className="bg-green-800 text-white px-6 py-2 rounded-full font-semibold"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <button
+                onClick={() => {
+                  navigate("/edit-profile", {
+                    state: { userDetails, phoneDetails },
+                  });
+                }}
+                className="flex items-center text-green-900 text-base font-semibold underline"
+              >
+                <FiEdit2 className="mr-1 text-lg" /> Edit
+              </button>
             </div>
             <p className="text-sm text-black font-semibold">
               {userDetails.address}
             </p>
-            <p className="text-sm text-black font-semibold">{userDetails.email}</p>
+            <p className="text-sm text-black font-semibold">
+              {userDetails.email}
+            </p>
           </div>
 
           <div className="mt-6 px-4">
@@ -273,7 +143,9 @@ const UserProfile = () => {
               </span>
             </div>
             <div className="flex items-center justify-between mt-4">
-              <p className="text-sm text-black font-semibold mt-4">Cancel Pickup</p>
+              <p className="text-sm text-black font-semibold mt-4">
+                Cancel Pickup
+              </p>
               <FaChevronRight className="text-black mt-4" />
             </div>
 
