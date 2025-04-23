@@ -14,6 +14,7 @@ import Notifications from "./components/Dashboard/Notifications";
 import UserProfile from "./components/Dashboard/UserProfile";
 import Recycle from "./components/Dashboard/Recycle";
 import EditProfile from "./components/Dashboard/EditProfile";
+import Support from "./components/Dashboard/Support";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/recycle" element={<Recycle />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </Router>
   );

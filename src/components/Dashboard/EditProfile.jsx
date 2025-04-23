@@ -123,6 +123,11 @@ const EditProfile = () => {
     e.target.select();
   };
 
+  // Add navigation to Support.jsx when "Support" is clicked
+  const handleSupportClick = () => {
+    navigate("/support");
+  };
+
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       <Header />
@@ -221,7 +226,7 @@ const EditProfile = () => {
         {isDropdownOpen && (
           <div
             className="absolute border border-stone-300 rounded-md p-2 w-fit bg-white shadow-md"
-            style={{ top: '69%', right: '6px', }}
+            style={{ top: "69%", right: "6px" }}
           >
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Schedule Waste Pickup</h4>
@@ -269,7 +274,7 @@ const EditProfile = () => {
         {isCancelDropdownOpen && (
           <div
             className="absolute border border-stone-300 rounded-md p-2 w-fit bg-white shadow-md"
-            style={{ top: '80%', right: '6px', zIndex: 10 }}
+            style={{ top: "80%", right: "6px", zIndex: 10 }}
           >
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Cancel Pickup</h4>
@@ -312,7 +317,10 @@ const EditProfile = () => {
       <div className="mt-6 pb-10">
         <hr className="border-stone-300 my-3" />
         <div className="mt-4">
-          <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
+          <p
+            className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg cursor-pointer"
+            onClick={handleSupportClick}
+          >
             Support
           </p>
         </div>

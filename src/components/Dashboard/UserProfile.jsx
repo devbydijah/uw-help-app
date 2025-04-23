@@ -50,6 +50,11 @@ const UserProfile = () => {
     });
   };
 
+  // Add navigation to Support.jsx when "Support" is clicked
+  const handleSupportClick = () => {
+    navigate("/support");
+  };
+
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       {isLoading && (
@@ -178,7 +183,10 @@ const UserProfile = () => {
           <div className="mt-6 pb-10">
             <hr className="border-stone-300 my-3" />
             <div className="mt-8">
-              <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
+              <p
+                className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg cursor-pointer"
+                onClick={handleSupportClick}
+              >
                 Support
               </p>
             </div>
