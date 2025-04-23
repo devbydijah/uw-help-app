@@ -1,3 +1,6 @@
+// Component: Onboarding2
+// Purpose: The second onboarding screen providing more details about the app's features.
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";

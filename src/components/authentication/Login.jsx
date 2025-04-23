@@ -1,27 +1,10 @@
+// Component: Login
+// Purpose: Handles user login functionality, including form submission and validation.
+
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  FacebookAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAc75lzWPr4e0AY43V_k0Dy_Ofz4A4FOFY",
-  authDomain: "urban-waste-help-6cb52.firebaseapp.com",
-  projectId: "urban-waste-help-6cb52",
-  storageBucket: "urban-waste-help-6cb52.firebasestorage.app",
-  messagingSenderId: "489957749468",
-  appId: "1:489957749468:web:9b150e6e013c5597157a19",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const Login = () => {
   const {
@@ -48,16 +31,26 @@ const Login = () => {
     })(document, "script", "facebook-jssdk");
   }, []);
 
+  const mockUsers = [
+    {
+      username: "testuser",
+      password: "password123",
+      email: "testuser@example.com",
+    },
+  ];
+
   const onSubmit = async (data) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.username,
-        data.password
-      );
-      console.log("User logged in:", userCredential.user);
-    } catch (error) {
-      console.error("Error logging in user:", error);
+    const user = mockUsers.find(
+      (user) =>
+        user.username === data.username && user.password === data.password
+    );
+    if (user) {
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      console.log("User logged in:", user);
+      navigate("/dashboard");
+    } else {
+      console.error("Invalid credentials");
+      alert("Invalid username or password");
     }
   };
 
@@ -70,15 +63,23 @@ const Login = () => {
   };
 
   const handleFacebookLogin = () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("Facebook sign-in successful:", result.user);
-        navigate("/signupas");
-      })
-      .catch((error) => {
-        console.error("Error with Facebook sign-in:", error);
-      });
+    const mockFacebookUser = {
+      username: "fbuser",
+      email: "fbuser@example.com",
+    };
+    localStorage.setItem("loggedInUser", JSON.stringify(mockFacebookUser));
+    console.log("Facebook sign-in successful:", mockFacebookUser);
+    navigate("/signupas");
+  };
+
+  const handleGoogleLogin = () => {
+    const mockGoogleUser = {
+      username: "googleuser",
+      email: "googleuser@example.com",
+    };
+    localStorage.setItem("loggedInUser", JSON.stringify(mockGoogleUser));
+    console.log("Google sign-in successful:", mockGoogleUser);
+    navigate("/signupas");
   };
 
   const handleSignupClick = () => {
@@ -183,25 +184,28 @@ const Login = () => {
         <hr className="w-1/4 border-t border-neutral-500" />
       </div>
       <div className="mt-4 w-full flex flex-col items-center gap-4">
-        <GoogleLogin
-          onSuccess={(response) => {
-            console.log("Google sign-in successful", response);
-            navigate("/signupas");
-          }}
-          onError={() => {
-            console.log("Google sign-in failed");
-          }}
-        />
-        <div
-          className="fb-login-button"
-          data-width=""
-          data-size="large"
-          data-button-type="login_with"
-          data-layout="default"
-          data-auto-logout-link="false"
-          data-use-continue-as="false"
+        <button
+          className="flex items-center justify-center w-full max-w-md p-2 border border-gray-300 rounded-sm shadow-sm hover:shadow-md py-3 px-15 transition-all"
+          onClick={handleGoogleLogin}
+        >
+          <img
+            src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
+            alt="Google Icon"
+            className="w-6 h-6 mr-2"
+          />
+          Continue with Google
+        </button>
+        <button
+          className="flex items-center justify-center w-full max-w-md p-2 text-white border border-blue-500 bg-blue-500 rounded-sm shadow-sm hover:shadow-md py-3 px-15 transition-all"
           onClick={handleFacebookLogin}
-        ></div>
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+            alt="Facebook Icon"
+            className="w-6 h-6 mr-2"
+          />
+          Continue with Facebook
+        </button>
       </div>
     </div>
   );

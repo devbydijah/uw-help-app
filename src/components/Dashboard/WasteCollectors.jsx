@@ -1,3 +1,6 @@
+// Component: WasteCollectors
+// Purpose: Displays a list of nearby waste collectors and allows users to rate them.
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TrashDisposal1 from "../../assets/images/trash-disposal1.png";
@@ -27,7 +30,9 @@ const WasteCollectors = () => {
   return (
     <div className="mt-5 mx-4 py-6 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40">
       <div>
-        <h1 className="text-xl font-bold mt-4 pl-4 sm:text-2xl md:text-3xl">Waste collectors nearby</h1>
+        <h1 className="text-xl font-bold mt-4 pl-4 sm:text-2xl md:text-3xl">
+          Waste collectors nearby
+        </h1>
       </div>
 
       <div className="space-y-4 mt-4">
@@ -51,8 +56,8 @@ const WasteCollectors = () => {
                 <HiDotsVertical className="text-black cursor-pointer sm:text-lg md:text-xl" />
               </div>
               <p className="text-sm text-zinc-600 flex items-center mt-2 sm:text-base md:text-lg">
-                <HiOutlineLocationMarker className="mr-1 sm:text-lg md:text-xl" /> Rumeukpor, Port
-                Harcourt
+                <HiOutlineLocationMarker className="mr-1 sm:text-lg md:text-xl" />{" "}
+                Rumeukpor, Port Harcourt
               </p>
               <div className="flex mt-2">
                 {[1, 2, 3, 4, 5].map((star) => (

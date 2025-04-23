@@ -1,7 +1,5 @@
 // Component: Default (Dispose Waste)
-// Purpose: Allows users to select waste disposal preferences.
-// - Provides a form with options for waste type and collection method.
-// - Submits the selected preferences to schedule a waste pickup.
+// Purpose: Allows users to select waste disposal preferences and schedule pickups.
 
 // This page displays the default empty waste disposal drop-down options form for the user. It includes a list of waste categories, a preview selection, and a personalization option. The user can select their state to see the relevant waste disposal options.
 
@@ -43,7 +41,11 @@ const Default = () => {
     <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
       <div className="flex justify-between items-center p-4">
         <div>
-          <img src={UwLogo} alt="UW Logo" className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
+          <img
+            src={UwLogo}
+            alt="UW Logo"
+            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
+          />
         </div>
         <button className="cursor-pointer">
           <HiOutlineMenu className="w-6 h-6 text-black opacity-70 sm:w-8 sm:h-8 md:w-10 md:h-10" />
@@ -52,7 +54,9 @@ const Default = () => {
 
       <div className="p-4">
         <div className="mt-6 text-center">
-          <h1 className="text-2xl font-bold mb-3 sm:text-3xl md:text-4xl">Dispose Waste</h1>
+          <h1 className="text-2xl font-bold mb-3 sm:text-3xl md:text-4xl">
+            Dispose Waste
+          </h1>
           <p className="text-lg text-neutral-500 sm:text-xl md:text-2xl">
             Let’s set up your waste disposal preferences
           </p>
@@ -70,7 +74,9 @@ const Default = () => {
                   placeholder={
                     <div className="flex items-center gap-2">
                       <FiMapPin className="w-5 h-5 text-neutral-500 sm:w-6 sm:h-6 md:w-7 md:h-7" />
-                      <span className="text-neutral-500 sm:text-base md:text-lg">Enter location</span>
+                      <span className="text-neutral-500 sm:text-base md:text-lg">
+                        Enter location
+                      </span>
                     </div>
                   }
                 />

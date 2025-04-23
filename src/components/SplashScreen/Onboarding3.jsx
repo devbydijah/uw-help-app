@@ -1,3 +1,6 @@
+// Component: Onboarding3
+// Purpose: The third onboarding screen explaining how the app works and guiding users to registration.
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";

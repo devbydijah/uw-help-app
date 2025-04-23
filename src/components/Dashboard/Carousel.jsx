@@ -1,3 +1,6 @@
+// Component: Carousel
+// Purpose: Displays a carousel for navigating through different sections or features.
+
 import React from "react";
 import { HiPlus } from "react-icons/hi";
 import TrashBinImage from "../../assets/images/trashbin.png";

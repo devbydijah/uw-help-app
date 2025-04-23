@@ -1,3 +1,6 @@
+// Component: Homepage
+// Purpose: Serves as the main landing page for the dashboard, displaying user greetings, search bar, carousel, and waste collectors.
+
 import React, { useState, useEffect } from "react"; // Import useEffect
 import Header from "../shared/Header";
 import UserGreeting from "./UserGreeting";

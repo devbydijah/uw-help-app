@@ -3,6 +3,9 @@ import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import CompletedWasteIcon from "../../assets/images/completed-waste.png";
 
+// Component: CompletedWasteList
+// Purpose: Displays a list of completed waste pickups with details such as date, time, and location.
+
 const CompletedWasteList = ({ onCardClick }) => {
   const [completedWasteSummary, setCompletedWasteSummary] = useState([]);
 

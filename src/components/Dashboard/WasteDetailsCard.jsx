@@ -1,3 +1,6 @@
+// Component: WasteDetailsCard
+// Purpose: Displays detailed information about a specific waste pickup, including status and rating options.
+
 import React, { useState } from "react";
 import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
 import CompletedWasteIcon from "../../assets/images/completed-waste.png";

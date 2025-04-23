@@ -1,3 +1,6 @@
+// Component: Dashboard
+// Purpose: Displays an overview of user activities, including waste statistics and upcoming events.
+
 import React, { useState, useEffect } from "react";
 import Header from "../shared/Header";
 import FooterNavBar from "../shared/FooterNavBar";

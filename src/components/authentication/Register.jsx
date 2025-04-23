@@ -1,34 +1,10 @@
 // Component: Register
-// Purpose: Handles user registration functionality.
-// - Displays a registration form with fields for user details.
-// - Validates user input and submits the form to create a new account.
-// - Redirects to the login page upon successful registration.
+// Purpose: Handles user registration functionality, including form validation and submission.
 
-// TODO: Remember to set up HTTPS for your domain before deploying to production
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaArrowLeft, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  FacebookAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAc75lzWPr4e0AY43V_k0Dy_Ofz4A4FOFY",
-  authDomain: "urban-waste-help-6cb52.firebaseapp.com",
-  projectId: "urban-waste-help-6cb52",
-  storageBucket: "urban-waste-help-6cb52.firebasestorage.app",
-  messagingSenderId: "489957749468",
-  appId: "1:489957749468:web:9b150e6e013c5597157a19",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const Register = () => {
   const {
@@ -40,44 +16,23 @@ const Register = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loadFacebookSDK = () => {
-      if (window.FB) {
-        window.FB.init({
-          appId: "1825382201594217",
-          cookie: true,
-          xfbml: true,
-          version: "v12.0",
-        });
-      } else {
-        const script = document.createElement("script");
-        script.src = "https://connect.facebook.net/en_US/sdk.js";
-        script.async = true;
-        script.onload = () => {
-          window.FB.init({
-            appId: "1825382201594217",
-            cookie: true,
-            xfbml: true,
-            version: "v12.0",
-          });
-        };
-        document.body.appendChild(script);
-      }
-    };
-
-    loadFacebookSDK();
-  }, []);
-
   const onSubmit = async (data) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      console.log("User registered:", userCredential.user);
-    } catch (error) {
-      console.error("Error registering user:", error);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const userExists = users.some((user) => user.email === data.email);
+
+    if (userExists) {
+      console.error("User already exists");
+      alert("User with this email already exists");
+    } else {
+      const newUser = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      console.log("User registered:", newUser);
+      navigate("/login");
     }
   };
 
@@ -90,15 +45,27 @@ const Register = () => {
   };
 
   const handleFacebookLogin = () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("Facebook sign-in successful:", result.user);
-        navigate("/signupas");
-      })
-      .catch((error) => {
-        console.error("Error with Facebook sign-in:", error);
-      });
+    const mockFacebookUser = {
+      username: "fbuser",
+      email: "fbuser@example.com",
+    };
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push(mockFacebookUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log("Facebook sign-up successful:", mockFacebookUser);
+    navigate("/signupas");
+  };
+
+  const handleGoogleLogin = () => {
+    const mockGoogleUser = {
+      username: "googleuser",
+      email: "googleuser@example.com",
+    };
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push(mockGoogleUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log("Google sign-up successful:", mockGoogleUser);
+    navigate("/signupas");
   };
 
   const handleLoginClick = () => {
@@ -213,25 +180,28 @@ const Register = () => {
         <hr className="w-1/4 border-t border-neutral-500" />
       </div>
       <div className="mt-4 w-full flex flex-col items-center gap-4">
-        <GoogleLogin
-          onSuccess={(response) => {
-            console.log("Google sign-up successful", response);
-            navigate("/signupas");
-          }}
-          onError={() => {
-            console.log("Google sign-up failed");
-          }}
-        />
-        <div
-          className="fb-login-button"
-          data-width=""
-          data-size="large"
-          data-button-type="login_with"
-          data-layout="default"
-          data-auto-logout-link="false"
-          data-use-continue-as="false"
+        <button
+          className="flex items-center justify-center w-full max-w-md p-2 border border-gray-300 rounded-sm shadow-sm hover:shadow-md py-3 px-15 transition-all"
+          onClick={handleGoogleLogin}
+        >
+          <img
+            src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
+            alt="Google Icon"
+            className="w-6 h-6 mr-2"
+          />
+          Continue with Google
+        </button>
+        <button
+          className="flex items-center justify-center w-full max-w-md p-2 text-white border border-blue-500 bg-blue-500 rounded-sm py-3 px-15 shadow-sm hover:shadow-md transition-all"
           onClick={handleFacebookLogin}
-        ></div>
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+            alt="Facebook Icon"
+            className="w-6 h-6 mr-2"
+          />
+          Continue with Facebook
+        </button>
       </div>
     </div>
   );

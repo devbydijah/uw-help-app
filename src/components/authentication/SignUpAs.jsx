@@ -1,4 +1,5 @@
-// TODO: Remember to set up the submit button logic when a user selects a role and clicks submit
+// Component: SignUpAs
+// Purpose: Allows users to select their role (e.g., Waste Depositor or Collector) during registration.
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";

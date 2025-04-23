@@ -1,3 +1,5 @@
+// Component: SearchBar
+// Purpose: Provides a search input for users to find specific information or features.
 import React from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdTune } from "react-icons/md";

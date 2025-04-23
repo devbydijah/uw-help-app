@@ -1,3 +1,6 @@
+// Component: FooterNavBar
+// Purpose: Provides navigation links to different sections of the app, such as Home, Notifications, and Profile.
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiHome, HiOutlineHome } from "react-icons/hi";

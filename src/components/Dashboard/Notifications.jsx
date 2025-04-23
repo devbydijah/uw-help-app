@@ -1,3 +1,6 @@
+// Component: Notifications
+// Purpose: Displays a list of user notifications and allows marking them as read.
+
 import React, { memo, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../shared/Header";

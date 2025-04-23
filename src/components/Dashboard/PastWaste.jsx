@@ -1,3 +1,6 @@
+// Component: PastWaste
+// Purpose: Displays a list of past waste pickups and their details.
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../shared/Header";
@@ -32,7 +35,11 @@ const PastWaste = () => {
   };
 
   return (
-    <div className={`bg-white min-h-screen flex flex-col ${isMenuOpen ? 'inert' : ''} px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40`}>
+    <div
+      className={`bg-white min-h-screen flex flex-col ${
+        isMenuOpen ? "inert" : ""
+      } px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40`}
+    >
       <Header isMenuOpen={isMenuOpen} handleOpenChange={handleOpenChange} />
       <div className="flex items-center justify-between mt-4">
         <AiOutlineArrowLeft

@@ -1,3 +1,6 @@
+// Component: RatingDialog
+// Purpose: Provides a dialog for users to rate a service and submit feedback.
+
 import React from "react";
 import {
   AlertDialog,

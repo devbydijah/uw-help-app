@@ -1,3 +1,6 @@
+// Component: UserProfile
+// Purpose: Displays user profile information and allows navigation to edit profile or other settings.
+
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../shared/Header";
@@ -59,14 +62,16 @@ const UserProfile = () => {
               color: "transparent",
             }}
           />
-          <p className="text-lg font-semibold mt-4 sm:text-xl md:text-2xl">Please hold on</p>
+          <p className="text-lg font-semibold mt-4 sm:text-xl md:text-2xl">
+            Please hold on
+          </p>
         </div>
       )}
 
       {!isLoading && (
         <>
           <Header />
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-between mt-8">
             <FaArrowLeft
               className="w-4 h-4 text-black cursor-pointer sm:w-5 sm:h-5 md:w-6 md:h-6"
               onClick={handleBackClick}
@@ -102,8 +107,10 @@ const UserProfile = () => {
                 }
               />
             </div>
-            <div className="flex items-center justify-between w-full mt-4">
-              <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">{userDetails.name}</h2>
+            <div className="flex items-center justify-between w-full mt-8">
+              <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">
+                {userDetails.name}
+              </h2>
               <button
                 onClick={() => {
                   navigate("/edit-profile", {
@@ -115,25 +122,28 @@ const UserProfile = () => {
                 <FiEdit2 className="mr-1 text-lg sm:text-xl md:text-2xl" /> Edit
               </button>
             </div>
-            <p className="text-sm text-black font-semibold sm:text-base md:text-lg">
+            <p className="text-sm text-black font-semibold sm:text-base md:text-lg mt-4">
               {userDetails.address}
             </p>
-            <p className="text-sm text-black font-semibold sm:text-base md:text-lg">
+            <p className="text-sm text-black font-semibold sm:text-base md:text-lg mt-4">
               {userDetails.email}
             </p>
           </div>
 
-          <div className="mt-6">
-            <div className="flex items-center justify-between mt-2">
+          <div className="mt-15">
+            <div className="flex items-center justify-between mt-4">
               <h3 className="text-sm font-bold text-black flex items-center sm:text-base md:text-lg">
                 Active Pickup
                 <span className="w-3 h-3 bg-green-900 rounded-full ml-3"></span>
               </h3>
             </div>
-            <hr className="border-stone-300 my-3" />
-            <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
-              Scheduled pickup request
-            </p>
+            <hr className="border-stone-300 my-3 mt-4" />
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
+                Schedule pickup request
+              </p>
+              <FaChevronRight className="text-black mt-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            </div>
             <div className="flex items-center justify-between mt-4">
               <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
                 Live Status updates
@@ -149,7 +159,7 @@ const UserProfile = () => {
               <FaChevronRight className="text-black mt-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </div>
 
-            <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center justify-between mt-7">
               <Label
                 htmlFor="allow-notification"
                 className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg"
@@ -167,12 +177,16 @@ const UserProfile = () => {
 
           <div className="mt-6 pb-10">
             <hr className="border-stone-300 my-3" />
-            <div className="mt-4">
-              <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">Support</p>
+            <div className="mt-8">
+              <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
+                Support
+              </p>
             </div>
             <hr className="border-stone-300 my-3" />
-            <div className="mt-4">
-              <p className="text-sm text-black font-semibold sm:text-base md:text-lg">Logout</p>
+            <div className="mt-8">
+              <p className="text-sm text-black font-semibold sm:text-base md:text-lg">
+                Logout
+              </p>
             </div>
           </div>
 

@@ -1,3 +1,6 @@
+// Component: Recycle
+// Purpose: Provides information and options for recycling waste.
+
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../shared/Header";

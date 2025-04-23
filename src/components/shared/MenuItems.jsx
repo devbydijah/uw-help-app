@@ -9,6 +9,8 @@ import {
 import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
+// Component: MenuItems
+// Purpose: Provides a list of menu options for navigation within the app.
 const MenuItems = () => {
   const navigate = useNavigate();
 

@@ -1,3 +1,6 @@
+// Component: Onboarding1
+// Purpose: The first onboarding screen introducing the app to new users.
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import uwLogo from "../../assets/images/uw-logo.png";

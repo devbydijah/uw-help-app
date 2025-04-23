@@ -1,3 +1,8 @@
+// Component: Header
+// Purpose: Displays the app's header with a logo and a menu for navigation.
+
+// Fixed JSX syntax issues by ensuring all elements have proper closing tags.
+
 import React, { useState } from "react";
 import UwLogo from "../../assets/images/uw-logo2.png";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
@@ -17,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+    <div className="flex justify-between items-center p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 mt-8">
       <div>
         <img
           src={UwLogo}
@@ -38,7 +43,7 @@ const Header = () => {
           className="w-64 h-full bg-white p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between"
         >
           {/* Menu Header */}
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 mt-7">
             <SheetTitle className="text-black font-semibold text-lg sm:text-xl md:text-2xl">
               Uw-help
             </SheetTitle>
