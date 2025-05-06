@@ -86,6 +86,7 @@ const UserProfile = () => {
             </h1>
           </div>
 
+          {/* This section displays the user's profile information and provides navigation options. */}
           <div className="flex flex-col items-start mt-6">
             <div className="relative">
               <img
@@ -135,7 +136,9 @@ const UserProfile = () => {
             </p>
           </div>
 
+          {/* The green dot indicates the user is active. */}
           <div className="mt-15">
+            {/* This section provides options for scheduling a pickup request and viewing live status updates. */}
             <div className="flex items-center justify-between mt-4">
               <h3 className="text-sm font-bold text-black flex items-center sm:text-base md:text-lg">
                 Active Pickup
@@ -153,6 +156,7 @@ const UserProfile = () => {
               <p className="text-sm text-black font-semibold mt-4 sm:text-base md:text-lg">
                 Live Status updates
               </p>
+              {/* The 'Pending' badge indicates the current status of the live updates. */}
               <span className="text-xs bg-red-100 text-red-500 px-2 py-1 rounded-full mt-4 sm:text-sm md:text-base">
                 Pending
               </span>

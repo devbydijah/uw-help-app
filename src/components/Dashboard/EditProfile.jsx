@@ -1,3 +1,6 @@
+// Component: EditProfile
+// Purpose: Allows users to update their profile details, including name, email, and address.
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -12,12 +15,19 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoCheckmarkOutline } from "react-icons/io5";
 
+// EditProfile component: Allows users to edit their profile details
 const EditProfile = () => {
+  // useNavigate hook: Used for navigation between routes
   const navigate = useNavigate();
+
+  // useLocation hook: Accesses the current location object
   const location = useLocation();
+
+  // Extracting initial user and phone details from location state
   const { userDetails: initialUserDetails, phoneDetails: initialPhoneDetails } =
     location.state || {};
 
+  // State for user details with default values
   const [userDetails, setUserDetails] = useState(
     initialUserDetails || {
       firstName: "",
@@ -26,17 +36,27 @@ const EditProfile = () => {
       email: "",
     }
   );
+
+  // State for phone details with default values
   const [phoneDetails, setPhoneDetails] = useState(
     initialPhoneDetails || {
       countryCode: "+234",
       phoneNumber: "",
     }
   );
+
+  // State for managing success and loading states
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // State for managing notification toggle
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
+
+  // State for managing dropdown visibility
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCancelDropdownOpen, setIsCancelDropdownOpen] = useState(false);
+
+  // State for success message and selected option
   const [successMessage, setSuccessMessage] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -130,6 +150,7 @@ const EditProfile = () => {
 
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
+      {/* Header component: Displays the page header */}
       <Header />
       <div className="flex items-center justify-between mt-4">
         <FaArrowLeft
@@ -145,6 +166,7 @@ const EditProfile = () => {
         <h2 className="text-lg font-semibold mb-4 sm:text-xl md:text-2xl">
           Basic Information
         </h2>
+        {/* This section contains input fields for editing basic user information like first name and last name. */}
         <input
           type="text"
           name="firstName"
@@ -200,6 +222,7 @@ const EditProfile = () => {
       </div>
 
       <div className="mt-6">
+        {/* This section displays the active pickup status and allows users to view or edit it. */}
         <div className="flex items-center justify-between mt-2">
           <h3 className="text-sm font-bold text-black flex items-center sm:text-base md:text-lg">
             Active Pickup
@@ -332,6 +355,7 @@ const EditProfile = () => {
         </div>
       </div>
 
+      {/* Displays a success message when the profile is successfully updated. */}
       {successMessage && (
         <div
           className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-white border border-white text-green-900 rounded-full px-4 py-4 flex items-center shadow-md whitespace-nowrap"
@@ -342,6 +366,7 @@ const EditProfile = () => {
         </div>
       )}
 
+      {/* FooterNavBar component: Displays the footer navigation bar */}
       <FooterNavBar />
     </div>
   );

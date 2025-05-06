@@ -4,14 +4,17 @@ import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+// Dialog component: Wrapper for the dialog functionality
 function Dialog({ ...props }) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
+// DialogTrigger component: Used to trigger the dialog
 function DialogTrigger({ ...props }) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
+// DialogPortal component: Handles rendering of the dialog in a portal
 function DialogPortal({ className, children, ...props }) {
   return (
     <DialogPrimitive.Portal
@@ -28,10 +31,12 @@ function DialogPortal({ className, children, ...props }) {
   );
 }
 
+// DialogClose component: Button to close the dialog
 function DialogClose({ ...props }) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
+// DialogOverlay component: Background overlay for the dialog
 function DialogOverlay({ className, ...props }) {
   return (
     <DialogPrimitive.Overlay
@@ -45,6 +50,7 @@ function DialogOverlay({ className, ...props }) {
   );
 }
 
+// DialogContent component: Main content area of the dialog
 function DialogContent({ className, children, descriptionId, ...props }) {
   return (
     <DialogPortal data-slot="dialog-portal">
@@ -68,6 +74,7 @@ function DialogContent({ className, children, descriptionId, ...props }) {
   );
 }
 
+// DialogHeader component: Header section of the dialog
 function DialogHeader({ className, ...props }) {
   return (
     <div
@@ -78,6 +85,7 @@ function DialogHeader({ className, ...props }) {
   );
 }
 
+// DialogFooter component: Footer section of the dialog
 function DialogFooter({ className, ...props }) {
   return (
     <div
@@ -91,6 +99,7 @@ function DialogFooter({ className, ...props }) {
   );
 }
 
+// DialogTitle component: Title of the dialog
 function DialogTitle({ className, ...props }) {
   return (
     <DialogPrimitive.Title
@@ -101,6 +110,7 @@ function DialogTitle({ className, ...props }) {
   );
 }
 
+// DialogDescription component: Description text for the dialog
 function DialogDescription({ className, ...props }) {
   return (
     <DialogPrimitive.Description

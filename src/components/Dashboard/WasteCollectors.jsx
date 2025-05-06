@@ -11,6 +11,7 @@ import { HiOutlineLocationMarker, HiDotsVertical } from "react-icons/hi";
 import { FaStar } from "react-icons/fa";
 
 const WasteCollectors = () => {
+  // The collectors array contains the list of waste collectors with their respective images.
   const collectors = [
     { id: 1, image: TrashDisposal1 },
     { id: 2, image: TrashDisposal2 },
@@ -18,6 +19,7 @@ const WasteCollectors = () => {
     { id: 4, image: TrashDisposal4 },
   ];
 
+  // The ratings state is used to store user ratings for each collector.
   const [ratings, setRatings] = useState({});
 
   const handleRating = (collectorId, rating) => {

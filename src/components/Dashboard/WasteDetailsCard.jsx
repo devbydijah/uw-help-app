@@ -70,6 +70,7 @@ const WasteDetailsCard = ({
               {collectionStatus}
             </span>
           </p>
+          {/* This section displays the date and time of the waste pickup. */}
           <p className="text-lg text-zinc-600 flex items-center sm:text-xl md:text-2xl">
             <span className="text-black">Date:</span>
             <AiOutlineCalendar className="ml-1 mr-1 text-zinc-600" />
@@ -90,6 +91,7 @@ const WasteDetailsCard = ({
         >
           Book waste pickup
         </button>
+        {/* The 'Rate this service' button opens a dialog for users to provide feedback. */}
         <button
           className="px-3 py-1.5 bg-white text-green-900 border border-green-900 rounded-full cursor-pointer hover:bg-neutral-200 sm:px-4 sm:py-2 md:px-6 md:py-3"
           onClick={() => setIsDialogOpen(true)}
@@ -98,6 +100,7 @@ const WasteDetailsCard = ({
         </button>
       </div>
 
+      {/* The RatingDialog component is used to collect user ratings and feedback. */}
       <RatingDialog
         isDialogOpen={isDialogOpen}
         handleDialogClose={handleDialogClose}

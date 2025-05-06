@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { AiOutlineChrome } from "react-icons/ai";
 import { FaChevronDown } from "react-icons/fa";
 
+// The notifications array contains the list of notifications to be displayed.
 function markAsRead(notificationId) {
   console.log(`Notification ${notificationId} marked as read`);
 }
@@ -29,6 +30,7 @@ const Notifications = memo(() => {
     }
   };
 
+  // The handleMarkAsRead function marks a notification as read when triggered.
   const handleMarkAsRead = useCallback((notificationId) => {
     markAsRead(notificationId);
   }, []);
