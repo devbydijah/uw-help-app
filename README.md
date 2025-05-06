@@ -8,7 +8,7 @@ The UW Help App is designed to assist users in managing waste disposal efficient
 
 - Onboarding screens for new users.
 - User authentication (Login, Register).
-- Dashboard with waste statistics and navigation.
+- Dashboard, with waste statistics and navigation.
 - Waste disposal preferences setup.
 - Notifications and user profile management.
 
