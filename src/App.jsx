@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onboarding1 from "./components/SplashScreen/Onboarding1";
 import Onboarding2 from "./components/SplashScreen/Onboarding2";
 import Onboarding3 from "./components/SplashScreen/Onboarding3";
-import SignUpAs from "./components/Authentication/SignUpAs";
-import Login from "./components/Authentication/Login";
+import SignUpAs from "./components/authentication/SignUpAs";
+import Login from "./components/authentication/Login";
 import Homepage from "./components/Dashboard/Homepage";
 import Default from "./components/DisposeWaste/Default";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -13,7 +13,7 @@ import Notifications from "./components/Dashboard/Notifications";
 import UserProfile from "./components/Dashboard/UserProfile";
 import Recycle from "./components/Dashboard/Recycle";
 import EditProfile from "./components/Dashboard/EditProfile";
-import Register from "./components/Authentication/Register";
+import Register from "./components/authentication/Register";
 
 function App() {
   return (
